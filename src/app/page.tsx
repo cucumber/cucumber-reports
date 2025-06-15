@@ -14,12 +14,22 @@ export default async function Page({ searchParams }: {
   return (
     <main className="flex-grow bg-slate-50">
       <div className="max-w-7xl p-8 mx-auto">
-        {deleted && <div className="w-xs px-4 py-2 mx-auto bg-blue-100">Your report was deleted.</div>}
 
         <header className="text-center mb-8">
           <h1 className="text-5xl font-light"><strong className="font-bold">Cucumber</strong> Reports</h1>
           <p className="text-xl">Publish and share your test reports, straight from Cucumber.</p>
         </header>
+
+        {deleted &&
+          <div className="flex justify-center items-center gap-1 w-3xs px-4 py-3 mx-auto mb-8 bg-blue-100">
+            {/*Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc*/}
+            <svg className="text-blue-500" viewBox="0 0 512 512" width="24" height="24">
+              <path
+                d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM216 336l24 0 0-64-24 0c-13.3 0-24-10.7-24-24s10.7-24 24-24l48 0c13.3 0 24 10.7 24 24l0 88 8 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-80 0c-13.3 0-24-10.7-24-24s10.7-24 24-24zm40-208a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"
+                fill="currentColor" />
+            </svg>
+            <span>Your report was deleted.</span>
+          </div>}
 
         <section className="my-8">
           <FakeWindow>
@@ -69,7 +79,8 @@ export default async function Page({ searchParams }: {
         </section>
 
         <section className="my-8">
-          <p className="text-xl text-center">Got questions? <Link className="underline" href="/faqs">See the FAQs</Link>.</p>
+          <p className="text-xl text-center">Got questions? <Link className="underline" href="/faqs">See the FAQs</Link>.
+          </p>
         </section>
       </div>
     </main>
