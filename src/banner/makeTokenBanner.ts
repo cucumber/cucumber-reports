@@ -6,6 +6,7 @@ export function makeTokenBanner(): string {
       'Private reports are no longer supported.',
       'You can still publish anonymous (public) reports',
       'by removing the token from your configuration.',
+      'See https://reports.cucumber.io/faqs',
     ],
     [Modifier.red],
   )
