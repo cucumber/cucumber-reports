@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { GoogleAnalytics } from '@next/third-parties/google'
 import './globals.css'
 import { ReactNode } from 'react'
 import { textFont } from './fonts'
@@ -19,6 +20,7 @@ export default function RootLayout({ children }: Readonly<{
     {children}
     <Footer/>
     </body>
+    <GoogleAnalytics gaId="G-22NQZFFMH7" />
     </html>
   )
 }
