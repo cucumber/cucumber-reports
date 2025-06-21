@@ -11,7 +11,7 @@ export const publishReport: (privateToken?: string) => Action<PublishResult> = (
     if (privateToken) {
       headers.set('Authorization', `Bearer ${privateToken}`)
     }
-    const getResponse = await fetch('http://localhost:3000/api/reports', { headers })
+    const getResponse = await fetch('http://touch.lambda-url.us-east-2.localhost.localstack.cloud:4566', { headers })
 
     const banner = stripVTControlCharacters(await getResponse.text())
     const url = banner.split(' ').find(part => part.startsWith('http'))
