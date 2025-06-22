@@ -1,0 +1,32 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'functions/**'
+      - '.github/workflows/deploy.yaml'
+
+jobs:
+  deploy:
+    name: Deploy to ${{ matrix.environment }}
+    runs-on: ubuntu-latest
+    environment: ${{ matrix.environment }}
+    strategy:
+      matrix:
+        environment: ['dev', 'prod']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-region: ${{ vars.AWS_REGION }}
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      - run: sudo apt-get update && sudo apt-get install -y zip
+      - run: zip -j function.zip index.mjs
+        working-directory: ./functions/touch
+      - run: |
+          aws lambda update-function-code \
+            --function-name cucumber-reports-touch-${{ matrix.environment }} \
+            --zip-file fileb://$(pwd)/functions/touch/function.zip
