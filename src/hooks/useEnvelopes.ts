@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
-import { Envelope } from '@cucumber/messages'
+import { Envelope, parseEnvelope } from '@cucumber/messages'
 
 export function useEnvelopes(id: string, getUrl: string) {
   return useQuery({
@@ -10,7 +10,7 @@ export function useEnvelopes(id: string, getUrl: string) {
         throw new Error('Failed to fetch envelopes', { cause: response })
       }
       const raw = await response.text()
-      return raw.trim().split('\n').map(s => JSON.parse(s) as Envelope)
+      return raw.trim().split('\n').map(s => parseEnvelope(s))
     },
     meta: {
       envelopes: true
