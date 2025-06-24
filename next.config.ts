@@ -2,7 +2,7 @@ import type { NextConfig } from 'next'
 import createMDX from '@next/mdx'
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  productionBrowserSourceMaps: true
 }
 
 export default createMDX({})(nextConfig)
