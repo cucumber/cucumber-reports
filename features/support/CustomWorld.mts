@@ -6,6 +6,7 @@ import { PublishResult } from '../actions/types'
 export class CustomWorld {
   private readonly actorLookup = new ActorLookup()
   private browser: Browser | undefined
+  public messagesFixture = 'messages-valid.ndjson'
   public publishResults: Array<PublishResult> = []
 
   public findOrCreateActor(actorName: string): Actor {

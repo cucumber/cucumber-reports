@@ -13,6 +13,10 @@ import { wasNotFound } from '../actions/wasNotFound.mjs'
 import { navigateToSite } from '../actions/navigateToSite.mjs'
 import { canSeeSample } from '../actions/canSeeSample.mjs'
 
+Given('a Cucumber implementation that omits some fields', async (t) => {
+  t.world.messagesFixture = 'messages-omissions.ndjson'
+})
+
 Given('{actor} has a private token', async (t, actor: Actor) => {
   actor.remember('privateToken', crypto.randomBytes(16).toString('hex'));
 })
@@ -26,7 +30,7 @@ Given('a report previously published by {actor} has been deleted', async (t, act
 })
 
 When('{actor} publishes a report', async (t, actor: Actor) => {
-  const publishResult = await actor.attemptsTo(publishReport(actor.recall('privateToken')))
+  const publishResult = await actor.attemptsTo(publishReport(t.world.messagesFixture, actor.recall('privateToken')))
   actor.remember('publishResult', publishResult)
   t.world.publishResults.push(publishResult)
 })

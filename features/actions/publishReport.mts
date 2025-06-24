@@ -5,7 +5,7 @@ import path from 'node:path'
 import { Action } from '../support/Actor.mjs'
 import { PublishResult } from './types'
 
-export const publishReport: (privateToken?: string) => Action<PublishResult> = (privateToken) => {
+export const publishReport: (fixture: string, privateToken?: string) => Action<PublishResult> = (fixture, privateToken) => {
   return async () => {
     const headers = new Headers()
     if (privateToken) {
@@ -18,7 +18,7 @@ export const publishReport: (privateToken?: string) => Action<PublishResult> = (
 
     if (getResponse.ok && url) {
       const putUrl = getResponse.headers.get('Location') as string
-      const envelopes = readFileSync(path.join(import.meta.dirname, '..', 'fixtures', 'messages-valid.ndjson'), { encoding: 'utf-8' })
+      const envelopes = readFileSync(path.join(import.meta.dirname, '..', 'fixtures', fixture), { encoding: 'utf-8' })
       const putResponse = await fetch(putUrl, {
         method: 'PUT',
         body: envelopes,
