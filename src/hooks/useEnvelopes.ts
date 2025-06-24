@@ -12,5 +12,8 @@ export function useEnvelopes(id: string, getUrl: string) {
       const raw = await response.text()
       return raw.trim().split('\n').map(s => JSON.parse(s) as Envelope)
     },
+    meta: {
+      envelopes: true
+    }
   })
 }
