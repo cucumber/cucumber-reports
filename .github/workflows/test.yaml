@@ -42,7 +42,7 @@ jobs:
   acceptance:
     runs-on: ubuntu-latest
     steps:
-      - uses: browser-actions/setup-chrome@v1
+      - uses: browser-actions/setup-chrome@v2
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
