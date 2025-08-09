@@ -10,12 +10,9 @@ on:
 
 jobs:
   deploy:
-    name: Deploy to ${{ matrix.environment }}
+    name: Deploy function
     runs-on: ubuntu-latest
-    environment: ${{ matrix.environment }}
-    strategy:
-      matrix:
-        environment: ['dev', 'prod']
+    environment: prod
     steps:
       - uses: actions/checkout@v4
       - uses: aws-actions/configure-aws-credentials@v4
@@ -28,5 +25,5 @@ jobs:
         working-directory: ./functions/touch
       - run: |
           aws lambda update-function-code \
-            --function-name cucumber-reports-touch-${{ matrix.environment }} \
+            --function-name cucumber-reports-touch-prod \
             --zip-file fileb://$(pwd)/functions/touch/function.zip
