@@ -8,6 +8,10 @@ const s3 = new S3({
   endpoint: process.env.APP_AWS_ENDPOINT,
 })
 
+/**
+ * @param {import('aws-lambda').APIGatewayProxyEventV2} event
+ * @returns {Promise<import('aws-lambda').APIGatewayProxyResultV2>}
+ */
 export const handler = async (event) => {
   if (event.headers['authorization']) {
     console.warn('Received request with authorization header; rejecting it')
@@ -23,7 +27,7 @@ export const handler = async (event) => {
   const id = randomUUID()
 
   const putUrl = await getSignedUrl(s3, new PutObjectCommand({
-    Bucket: process.env.APP_BUCKET_NAME ?? 'cucumber-reports-anonymous-envelopes',
+    Bucket: process.env.APP_BUCKET_NAME,
     Key: id,
   }), { expiresIn: 3600 })
 
