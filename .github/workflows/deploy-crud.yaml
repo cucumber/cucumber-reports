@@ -1,4 +1,4 @@
-name: Deploy Fetch Function
+name: Deploy crud function
 
 on:
   push:
@@ -10,7 +10,7 @@ on:
 
 jobs:
   deploy:
-    name: Deploy fetch function
+    name: Deploy function
     runs-on: ubuntu-latest
     environment: prod
     steps:
