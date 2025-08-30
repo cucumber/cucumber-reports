@@ -39,7 +39,7 @@
     "@types/react-dom": "^19",
     "@vitejs/plugin-react": "^5.0.0",
     "eslint": "^9",
-    "eslint-config-next": "15.4.6",
+    "eslint-config-next": "15.5.2",
     "jsdom": "^26.0.0",
     "postcss": "^8",
     "puppeteer": "^24.4.0",
