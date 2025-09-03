@@ -6,8 +6,8 @@ awslocal s3api put-bucket-cors --bucket cucumber-reports-anonymous-envelopes --c
 
 # lambda
 zip -j /etc/functions/touch/function.zip /etc/functions/touch/*.mjs
-awslocal lambda create-function --region us-east-2 --function-name touch --runtime nodejs22.x --handler index.handler --zip-file fileb:///etc/functions/touch/function.zip --role arn:aws:iam::000000000000:role/lambda-role --environment '{"Variables":{"APP_AWS_ENDPOINT":"http://localhost.localstack.cloud:4566","APP_BUCKET_NAME":"cucumber-reports-anonymous-envelopes","APP_BASE_URL":"http://localhost:3000"}}' --tags '{"_custom_id_":"touch"}'
+awslocal lambda create-function --region us-east-2 --function-name touch --runtime nodejs22.x --handler index.handler --zip-file fileb:///etc/functions/touch/function.zip --role arn:aws:iam::000000000000:role/lambda-role --environment '{"Variables":{"APP_AWS_ENDPOINT":"http://localhost.localstack.cloud:4566","APP_BUCKET_NAME":"cucumber-reports-anonymous-envelopes","APP_BASE_URL":"http://localhost:5173"}}' --tags '{"_custom_id_":"touch"}'
 awslocal lambda create-function-url-config --region us-east-2 --function-name touch --auth-type NONE
 zip -j /etc/functions/crud/function.zip /etc/functions/crud/*.mjs
 awslocal lambda create-function --region us-east-2 --function-name crud --runtime nodejs22.x --handler index.handler --zip-file fileb:///etc/functions/crud/function.zip --role arn:aws:iam::000000000000:role/lambda-role --environment '{"Variables":{"APP_AWS_ENDPOINT":"http://localhost.localstack.cloud:4566","APP_BUCKET_NAME":"cucumber-reports-anonymous-envelopes"}}' --tags '{"_custom_id_":"crud"}'
-awslocal lambda create-function-url-config --region us-east-2 --function-name crud --auth-type NONE
+awslocal lambda create-function-url-config --region us-east-2 --function-name crud --auth-type NONE --cors '{"AllowCredentials":false,"AllowHeaders":["*"],"AllowMethods":["GET","DELETE"],"AllowOrigins":["http://localhost:5173"]}'

@@ -25,7 +25,7 @@ Given('a report previously published by {actor} has been deleted', async (t, act
   actor.remember('publishResult', {
     success: true,
     banner: 'Report published',
-    url: `http://localhost:3000/reports/${crypto.randomUUID()}`,
+    url: `http://localhost:5173/reports/${crypto.randomUUID()}`,
   })
 })
 
