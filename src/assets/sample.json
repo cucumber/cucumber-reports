@@ -197,9 +197,7 @@
     "pickle": {
       "id": "167acb8f-e467-4fa6-b9f3-0a9192f0ee3a",
       "uri": "features/deletion.feature",
-      "astNodeIds": [
-        "52b15127-0dcd-49d1-8194-afbb8fa2dabb"
-      ],
+      "astNodeIds": ["52b15127-0dcd-49d1-8194-afbb8fa2dabb"],
       "tags": [],
       "name": "Deletion is scheduled for 24 hours after publication",
       "language": "en",
@@ -208,25 +206,19 @@
           "id": "b3863557-92ca-431b-8f2b-d411e5d5c555",
           "text": "Bruno publishes a report",
           "type": "Action",
-          "astNodeIds": [
-            "33c15567-b8fd-4eac-90ee-21f8b686a7bf"
-          ]
+          "astNodeIds": ["33c15567-b8fd-4eac-90ee-21f8b686a7bf"]
         },
         {
           "id": "231fc513-2272-40f9-9d58-c2e54666660f",
           "text": "Bruno views the report they just published",
           "type": "Action",
-          "astNodeIds": [
-            "a13697fa-22e1-4703-bf48-581c8b3857f7"
-          ]
+          "astNodeIds": ["a13697fa-22e1-4703-bf48-581c8b3857f7"]
         },
         {
           "id": "41111b06-28dd-4c76-92df-49d7d634735e",
           "text": "Bruno should see that the report is scheduled for deletion",
           "type": "Outcome",
-          "astNodeIds": [
-            "18a0f6ec-8b85-42b1-abc7-da6be3a3ec5f"
-          ]
+          "astNodeIds": ["18a0f6ec-8b85-42b1-abc7-da6be3a3ec5f"]
         }
       ]
     }
@@ -235,9 +227,7 @@
     "pickle": {
       "id": "aea12470-363c-4258-83c2-6fe76654fb47",
       "uri": "features/deletion.feature",
-      "astNodeIds": [
-        "c0a41ac1-ba45-44cb-9b8a-79744ac0805d"
-      ],
+      "astNodeIds": ["c0a41ac1-ba45-44cb-9b8a-79744ac0805d"],
       "tags": [],
       "name": "Proactively deleting a report",
       "language": "en",
@@ -246,33 +236,25 @@
           "id": "1bb2b0e3-f043-4466-a0d9-ff0705354280",
           "text": "Clara publishes a report",
           "type": "Action",
-          "astNodeIds": [
-            "9f545376-1d8c-4ad3-a2ab-0c8fbf23f125"
-          ]
+          "astNodeIds": ["9f545376-1d8c-4ad3-a2ab-0c8fbf23f125"]
         },
         {
           "id": "60e8eef7-b90a-44e9-b909-fe1387030ea1",
           "text": "Clara views the report they just published",
           "type": "Action",
-          "astNodeIds": [
-            "39a97999-d0ac-41e9-aebe-adab626e1dac"
-          ]
+          "astNodeIds": ["39a97999-d0ac-41e9-aebe-adab626e1dac"]
         },
         {
           "id": "f8f38cf2-c675-4196-9a43-e2375d05f0c4",
           "text": "Clara deletes the report",
           "type": "Action",
-          "astNodeIds": [
-            "81a8e0d3-21de-4088-af1f-46326d1cab07"
-          ]
+          "astNodeIds": ["81a8e0d3-21de-4088-af1f-46326d1cab07"]
         },
         {
           "id": "18f03b3b-5fa9-4cb1-b068-4465136ada62",
           "text": "Clara should see that the report was deleted",
           "type": "Outcome",
-          "astNodeIds": [
-            "d00732a7-3cf0-407a-8e20-33e5f60e248e"
-          ]
+          "astNodeIds": ["d00732a7-3cf0-407a-8e20-33e5f60e248e"]
         }
       ]
     }
@@ -281,9 +263,7 @@
     "pickle": {
       "id": "c1c81fc5-a115-4e53-b431-173ab1f27d12",
       "uri": "features/deletion.feature",
-      "astNodeIds": [
-        "3a0ceef5-a835-4805-be2c-b96c51e86d3d"
-      ],
+      "astNodeIds": ["3a0ceef5-a835-4805-be2c-b96c51e86d3d"],
       "tags": [],
       "name": "Viewing a deleted report",
       "language": "en",
@@ -292,25 +272,19 @@
           "id": "4627173e-f187-4020-b26c-b620643b7e69",
           "text": "a report previously published by Esme has been deleted",
           "type": "Context",
-          "astNodeIds": [
-            "b445481c-81a3-4301-acf9-74332c693e09"
-          ]
+          "astNodeIds": ["b445481c-81a3-4301-acf9-74332c693e09"]
         },
         {
           "id": "9396b6c7-3bff-4679-ab54-11492479934d",
           "text": "Esme attempts to view their report",
           "type": "Action",
-          "astNodeIds": [
-            "91639ae3-c239-4b66-8194-539f6b7e3e40"
-          ]
+          "astNodeIds": ["91639ae3-c239-4b66-8194-539f6b7e3e40"]
         },
         {
           "id": "ae829390-91e2-4f1c-a0f2-74a195e0ca3f",
           "text": "Esme should see that no report was found",
           "type": "Outcome",
-          "astNodeIds": [
-            "68973b1f-3248-4af2-a18a-2664453e8996"
-          ]
+          "astNodeIds": ["68973b1f-3248-4af2-a18a-2664453e8996"]
         }
       ]
     }
@@ -319,9 +293,7 @@
     "parameterType": {
       "id": "44182741-9784-4a77-aa84-080520bbc88a",
       "name": "actor",
-      "regularExpressions": [
-        "[A-Z][a-z]+"
-      ],
+      "regularExpressions": ["[A-Z][a-z]+"],
       "preferForRegularExpressionMatch": false,
       "useForSnippets": true,
       "sourceReference": {
@@ -721,9 +693,7 @@
     "pickle": {
       "id": "cb587150-8686-4ef8-a299-d2963a20429c",
       "uri": "features/publishing.feature",
-      "astNodeIds": [
-        "4f75ee63-0be3-490c-a1e5-c1192b4dec75"
-      ],
+      "astNodeIds": ["4f75ee63-0be3-490c-a1e5-c1192b4dec75"],
       "tags": [],
       "name": "Report is immediately accessible after the run",
       "language": "en",
@@ -732,25 +702,19 @@
           "id": "3a7cfbbe-5ec0-4218-9179-a5216014a701",
           "text": "David publishes a report",
           "type": "Action",
-          "astNodeIds": [
-            "df5f8e1c-dd39-472d-a80c-b43e4ce58b2f"
-          ]
+          "astNodeIds": ["df5f8e1c-dd39-472d-a80c-b43e4ce58b2f"]
         },
         {
           "id": "fde4bbce-f08d-4faf-869a-4d3ffd92570f",
           "text": "David views the report they just published",
           "type": "Action",
-          "astNodeIds": [
-            "7492d129-4d38-402e-8be9-71c3788c77e4"
-          ]
+          "astNodeIds": ["7492d129-4d38-402e-8be9-71c3788c77e4"]
         },
         {
           "id": "06622832-9d95-4f58-8347-eb2f6126a461",
           "text": "David should see their test results",
           "type": "Outcome",
-          "astNodeIds": [
-            "1d85cbf8-1bba-4cfa-bfa3-dcb49bd5531d"
-          ]
+          "astNodeIds": ["1d85cbf8-1bba-4cfa-bfa3-dcb49bd5531d"]
         }
       ]
     }
@@ -759,9 +723,7 @@
     "pickle": {
       "id": "24bee1a1-8d28-4771-a3eb-d20a4c2cf26c",
       "uri": "features/publishing.feature",
-      "astNodeIds": [
-        "3d165ded-36cb-4c33-875b-5da85afa3d19"
-      ],
+      "astNodeIds": ["3d165ded-36cb-4c33-875b-5da85afa3d19"],
       "tags": [],
       "name": "Reports are publicly accessible with the URL",
       "language": "en",
@@ -770,33 +732,25 @@
           "id": "dac60d43-b9aa-4ac4-9c79-ba75cc2a9019",
           "text": "Garrett publishes a report",
           "type": "Action",
-          "astNodeIds": [
-            "b45e907e-313f-449f-abe4-47dec46dbf42"
-          ]
+          "astNodeIds": ["b45e907e-313f-449f-abe4-47dec46dbf42"]
         },
         {
           "id": "2063c9d5-706f-4818-a4a5-e654a23662ee",
           "text": "Garrett shares their link with Hannah",
           "type": "Action",
-          "astNodeIds": [
-            "d4ed0a52-a3c2-4e11-981f-a57ed916104b"
-          ]
+          "astNodeIds": ["d4ed0a52-a3c2-4e11-981f-a57ed916104b"]
         },
         {
           "id": "624d8291-6722-42e7-8327-d163476b9bc5",
           "text": "Hannah views the shared report",
           "type": "Action",
-          "astNodeIds": [
-            "d91b8621-8184-49d7-b20e-ad0b02274239"
-          ]
+          "astNodeIds": ["d91b8621-8184-49d7-b20e-ad0b02274239"]
         },
         {
           "id": "0013d8df-acfd-457c-9aff-8241bda6fdf0",
           "text": "Hannah should see the test results",
           "type": "Outcome",
-          "astNodeIds": [
-            "4b456ddb-f8ff-4050-b7c4-943cdc04f7ae"
-          ]
+          "astNodeIds": ["4b456ddb-f8ff-4050-b7c4-943cdc04f7ae"]
         }
       ]
     }
@@ -805,9 +759,7 @@
     "parameterType": {
       "id": "f136c04c-42f7-4bc5-a5b0-5ce50c40665b",
       "name": "actor",
-      "regularExpressions": [
-        "[A-Z][a-z]+"
-      ],
+      "regularExpressions": ["[A-Z][a-z]+"],
       "preferForRegularExpressionMatch": false,
       "useForSnippets": true,
       "sourceReference": {
@@ -1169,9 +1121,7 @@
     "pickle": {
       "id": "c107bdc1-3b0b-4207-9c69-ed5cda512df9",
       "uri": "features/tokens.feature",
-      "astNodeIds": [
-        "48149a1f-98e1-4225-9b1b-062bc40eb1ab"
-      ],
+      "astNodeIds": ["48149a1f-98e1-4225-9b1b-062bc40eb1ab"],
       "tags": [],
       "name": "Publishing a report with a private token",
       "language": "en",
@@ -1180,17 +1130,13 @@
           "id": "c8446c49-286f-47c1-895a-18e1635f77c6",
           "text": "Amanda has a private token",
           "type": "Context",
-          "astNodeIds": [
-            "42b6da31-3756-4814-8449-245a3eb25bb7"
-          ]
+          "astNodeIds": ["42b6da31-3756-4814-8449-245a3eb25bb7"]
         },
         {
           "id": "7f46a09e-5b5a-4afa-a79f-ed7835d98776",
           "text": "Amanda publishes a report",
           "type": "Action",
-          "astNodeIds": [
-            "64b19484-a95e-4c58-a603-7102124797e5"
-          ]
+          "astNodeIds": ["64b19484-a95e-4c58-a603-7102124797e5"]
         },
         {
           "id": "dfe9bdf5-c70d-4986-baf6-0118e08cdb86",
@@ -1201,17 +1147,13 @@
               "content": "┌──────────────────────────────────────────────────┐\n│ Private reports are no longer supported.         │\n│ You can still publish anonymous (public) reports │\n│ by removing the token from your configuration.   │\n└──────────────────────────────────────────────────┘"
             }
           },
-          "astNodeIds": [
-            "e9dd9532-5769-46fd-a470-c93b3d9c7d61"
-          ]
+          "astNodeIds": ["e9dd9532-5769-46fd-a470-c93b3d9c7d61"]
         },
         {
           "id": "368a9139-a057-49ca-9faf-9130f8a26157",
           "text": "no report should be published",
           "type": "Outcome",
-          "astNodeIds": [
-            "fd8e98bd-c09a-4a1a-b162-22f7ae4865b7"
-          ]
+          "astNodeIds": ["fd8e98bd-c09a-4a1a-b162-22f7ae4865b7"]
         }
       ]
     }
@@ -1220,9 +1162,7 @@
     "parameterType": {
       "id": "8cd104ab-d85f-483e-a0a0-f2110e7eaa83",
       "name": "actor",
-      "regularExpressions": [
-        "[A-Z][a-z]+"
-      ],
+      "regularExpressions": ["[A-Z][a-z]+"],
       "preferForRegularExpressionMatch": false,
       "useForSnippets": true,
       "sourceReference": {
@@ -1556,9 +1496,7 @@
     "pickle": {
       "id": "f775f498-b554-4b3d-b1f1-5720e34c07af",
       "uri": "features/welcome.feature",
-      "astNodeIds": [
-        "ec9a687f-092a-405d-91f5-13d323042382"
-      ],
+      "astNodeIds": ["ec9a687f-092a-405d-91f5-13d323042382"],
       "tags": [],
       "name": "Sample report",
       "language": "en",
@@ -1567,17 +1505,13 @@
           "id": "f2bc82c0-b67a-4033-b7c8-83cb560a578e",
           "text": "Frank accesses the site directly",
           "type": "Action",
-          "astNodeIds": [
-            "d14d5506-3949-4af3-a756-7700e26b876c"
-          ]
+          "astNodeIds": ["d14d5506-3949-4af3-a756-7700e26b876c"]
         },
         {
           "id": "f43506a1-111f-4ca4-b443-12c5733ac2a4",
           "text": "Frank should see a sample report",
           "type": "Outcome",
-          "astNodeIds": [
-            "25badacf-6654-4437-b4b3-0c968f3d3a9d"
-          ]
+          "astNodeIds": ["25badacf-6654-4437-b4b3-0c968f3d3a9d"]
         }
       ]
     }
@@ -1586,9 +1520,7 @@
     "parameterType": {
       "id": "2244f6bd-c989-4c40-9b56-bd6353d220c0",
       "name": "actor",
-      "regularExpressions": [
-        "[A-Z][a-z]+"
-      ],
+      "regularExpressions": ["[A-Z][a-z]+"],
       "preferForRegularExpressionMatch": false,
       "useForSnippets": true,
       "sourceReference": {
@@ -1873,9 +1805,7 @@
         {
           "id": "7a4c4f00-a459-415d-a47d-0e746a54cb71",
           "pickleStepId": "b3863557-92ca-431b-8f2b-d411e5d5c555",
-          "stepDefinitionIds": [
-            "82b2a494-d7f9-4a2a-a525-fe07cbb4ed89"
-          ],
+          "stepDefinitionIds": ["82b2a494-d7f9-4a2a-a525-fe07cbb4ed89"],
           "stepMatchArgumentsLists": [
             {
               "stepMatchArguments": [
@@ -1894,9 +1824,7 @@
         {
           "id": "7de8ae4c-2601-4b26-8bcc-41636fd7d9f8",
           "pickleStepId": "231fc513-2272-40f9-9d58-c2e54666660f",
-          "stepDefinitionIds": [
-            "9b0eb230-4b77-4ee3-8bea-8ee4569bf8ca"
-          ],
+          "stepDefinitionIds": ["9b0eb230-4b77-4ee3-8bea-8ee4569bf8ca"],
           "stepMatchArgumentsLists": [
             {
               "stepMatchArguments": [
@@ -1915,9 +1843,7 @@
         {
           "id": "c4e05cc4-9bb2-4c9f-bea9-a9a5d4f598da",
           "pickleStepId": "41111b06-28dd-4c76-92df-49d7d634735e",
-          "stepDefinitionIds": [
-            "aa48b142-fc4b-4058-ac20-d65bd1770df1"
-          ],
+          "stepDefinitionIds": ["aa48b142-fc4b-4058-ac20-d65bd1770df1"],
           "stepMatchArgumentsLists": [
             {
               "stepMatchArguments": [
@@ -1945,9 +1871,7 @@
         {
           "id": "ec4d15ae-03de-4e1f-af16-b609e3931a55",
           "pickleStepId": "1bb2b0e3-f043-4466-a0d9-ff0705354280",
-          "stepDefinitionIds": [
-            "82b2a494-d7f9-4a2a-a525-fe07cbb4ed89"
-          ],
+          "stepDefinitionIds": ["82b2a494-d7f9-4a2a-a525-fe07cbb4ed89"],
           "stepMatchArgumentsLists": [
             {
               "stepMatchArguments": [
@@ -1966,9 +1890,7 @@
         {
           "id": "840b0310-4adf-4a03-a0fb-7b1f23656f59",
           "pickleStepId": "60e8eef7-b90a-44e9-b909-fe1387030ea1",
-          "stepDefinitionIds": [
-            "9b0eb230-4b77-4ee3-8bea-8ee4569bf8ca"
-          ],
+          "stepDefinitionIds": ["9b0eb230-4b77-4ee3-8bea-8ee4569bf8ca"],
           "stepMatchArgumentsLists": [
             {
               "stepMatchArguments": [
@@ -1987,9 +1909,7 @@
         {
           "id": "659df307-5581-41aa-9580-f4ba6b396be1",
           "pickleStepId": "f8f38cf2-c675-4196-9a43-e2375d05f0c4",
-          "stepDefinitionIds": [
-            "7d178177-12b8-450b-84fa-90d0ce98a463"
-          ],
+          "stepDefinitionIds": ["7d178177-12b8-450b-84fa-90d0ce98a463"],
           "stepMatchArgumentsLists": [
             {
               "stepMatchArguments": [
@@ -2008,9 +1928,7 @@
         {
           "id": "377c0113-7d3b-419e-8694-07cf402913e2",
           "pickleStepId": "18f03b3b-5fa9-4cb1-b068-4465136ada62",
-          "stepDefinitionIds": [
-            "1ef6165e-3f71-4087-940d-e51aaec16a00"
-          ],
+          "stepDefinitionIds": ["1ef6165e-3f71-4087-940d-e51aaec16a00"],
           "stepMatchArgumentsLists": [
             {
               "stepMatchArguments": [
@@ -2038,9 +1956,7 @@
         {
           "id": "5d1b8c2f-8d1d-4606-adc9-dbecb9572d80",
           "pickleStepId": "4627173e-f187-4020-b26c-b620643b7e69",
-          "stepDefinitionIds": [
-            "faa5218b-a490-4e70-85ef-01dd8a45d8be"
-          ],
+          "stepDefinitionIds": ["faa5218b-a490-4e70-85ef-01dd8a45d8be"],
           "stepMatchArgumentsLists": [
             {
               "stepMatchArguments": [
@@ -2059,9 +1975,7 @@
         {
           "id": "13000bda-ed74-443c-9174-c7e9008ac64a",
           "pickleStepId": "9396b6c7-3bff-4679-ab54-11492479934d",
-          "stepDefinitionIds": [
-            "c9258031-5b07-4570-9273-0db9e403ab3e"
-          ],
+          "stepDefinitionIds": ["c9258031-5b07-4570-9273-0db9e403ab3e"],
           "stepMatchArgumentsLists": [
             {
               "stepMatchArguments": [
@@ -2080,9 +1994,7 @@
         {
           "id": "0f70bb14-2ba4-4132-9cb8-ba73714cc717",
           "pickleStepId": "ae829390-91e2-4f1c-a0f2-74a195e0ca3f",
-          "stepDefinitionIds": [
-            "28f258b9-f2f9-4cab-a1ed-3d09c465d784"
-          ],
+          "stepDefinitionIds": ["28f258b9-f2f9-4cab-a1ed-3d09c465d784"],
           "stepMatchArgumentsLists": [
             {
               "stepMatchArguments": [
@@ -2443,9 +2355,7 @@
         {
           "id": "cab330b4-eb29-4ac7-965f-a9dfeff5d020",
           "pickleStepId": "3a7cfbbe-5ec0-4218-9179-a5216014a701",
-          "stepDefinitionIds": [
-            "54ce4487-50ba-4382-9903-9f2ff2f19cb7"
-          ],
+          "stepDefinitionIds": ["54ce4487-50ba-4382-9903-9f2ff2f19cb7"],
           "stepMatchArgumentsLists": [
             {
               "stepMatchArguments": [
@@ -2464,9 +2374,7 @@
         {
           "id": "e9f8ee3c-3eb7-480b-bb8e-57f9550977c6",
           "pickleStepId": "fde4bbce-f08d-4faf-869a-4d3ffd92570f",
-          "stepDefinitionIds": [
-            "eb99bfd3-f2a0-4351-8503-57772bd4eb46"
-          ],
+          "stepDefinitionIds": ["eb99bfd3-f2a0-4351-8503-57772bd4eb46"],
           "stepMatchArgumentsLists": [
             {
               "stepMatchArguments": [
@@ -2485,9 +2393,7 @@
         {
           "id": "2f51f5c8-8dc2-484a-b5f9-de309762da68",
           "pickleStepId": "06622832-9d95-4f58-8347-eb2f6126a461",
-          "stepDefinitionIds": [
-            "c35e4693-0179-4f95-82b6-c65f39d5fbda"
-          ],
+          "stepDefinitionIds": ["c35e4693-0179-4f95-82b6-c65f39d5fbda"],
           "stepMatchArgumentsLists": [
             {
               "stepMatchArguments": [
@@ -2515,9 +2421,7 @@
         {
           "id": "02fab9a1-9145-448b-a0bb-027bd7d2ad96",
           "pickleStepId": "dac60d43-b9aa-4ac4-9c79-ba75cc2a9019",
-          "stepDefinitionIds": [
-            "54ce4487-50ba-4382-9903-9f2ff2f19cb7"
-          ],
+          "stepDefinitionIds": ["54ce4487-50ba-4382-9903-9f2ff2f19cb7"],
           "stepMatchArgumentsLists": [
             {
               "stepMatchArguments": [
@@ -2536,9 +2440,7 @@
         {
           "id": "2311d9aa-81b8-4100-a3dc-50934ccfa2c6",
           "pickleStepId": "2063c9d5-706f-4818-a4a5-e654a23662ee",
-          "stepDefinitionIds": [
-            "839b104f-abce-44d4-bbc3-30af6a1d953f"
-          ],
+          "stepDefinitionIds": ["839b104f-abce-44d4-bbc3-30af6a1d953f"],
           "stepMatchArgumentsLists": [
             {
               "stepMatchArguments": [
@@ -2565,9 +2467,7 @@
         {
           "id": "dd917bc1-1e82-4e71-91ca-e63c622029ee",
           "pickleStepId": "624d8291-6722-42e7-8327-d163476b9bc5",
-          "stepDefinitionIds": [
-            "8982004d-ce05-46a5-b7f4-4481ec99f750"
-          ],
+          "stepDefinitionIds": ["8982004d-ce05-46a5-b7f4-4481ec99f750"],
           "stepMatchArgumentsLists": [
             {
               "stepMatchArguments": [
@@ -2586,9 +2486,7 @@
         {
           "id": "87e0f806-725c-48df-a328-413919d625cf",
           "pickleStepId": "0013d8df-acfd-457c-9aff-8241bda6fdf0",
-          "stepDefinitionIds": [
-            "c35e4693-0179-4f95-82b6-c65f39d5fbda"
-          ],
+          "stepDefinitionIds": ["c35e4693-0179-4f95-82b6-c65f39d5fbda"],
           "stepMatchArgumentsLists": [
             {
               "stepMatchArguments": [
@@ -2847,9 +2745,7 @@
         {
           "id": "1f0d2309-bdd7-4797-a8e7-cd7454888254",
           "pickleStepId": "c8446c49-286f-47c1-895a-18e1635f77c6",
-          "stepDefinitionIds": [
-            "c1ddd0b2-e84a-436b-b4c1-caa436f58273"
-          ],
+          "stepDefinitionIds": ["c1ddd0b2-e84a-436b-b4c1-caa436f58273"],
           "stepMatchArgumentsLists": [
             {
               "stepMatchArguments": [
@@ -2868,9 +2764,7 @@
         {
           "id": "1d93c66c-292c-4398-9b48-3c05478762a5",
           "pickleStepId": "7f46a09e-5b5a-4afa-a79f-ed7835d98776",
-          "stepDefinitionIds": [
-            "04a18a55-0dee-4525-b9f9-89049585e1da"
-          ],
+          "stepDefinitionIds": ["04a18a55-0dee-4525-b9f9-89049585e1da"],
           "stepMatchArgumentsLists": [
             {
               "stepMatchArguments": [
@@ -2889,9 +2783,7 @@
         {
           "id": "61b85813-4898-413c-9b2d-3e5fa6d3b694",
           "pickleStepId": "dfe9bdf5-c70d-4986-baf6-0118e08cdb86",
-          "stepDefinitionIds": [
-            "337518cf-15de-48ac-805a-584e8c23950f"
-          ],
+          "stepDefinitionIds": ["337518cf-15de-48ac-805a-584e8c23950f"],
           "stepMatchArgumentsLists": [
             {
               "stepMatchArguments": [
@@ -2910,9 +2802,7 @@
         {
           "id": "2b25b354-7bbb-4ed8-800a-6c4a8d9cd0a9",
           "pickleStepId": "368a9139-a057-49ca-9faf-9130f8a26157",
-          "stepDefinitionIds": [
-            "c379de00-3d42-4bd1-95ef-281c528c63e9"
-          ],
+          "stepDefinitionIds": ["c379de00-3d42-4bd1-95ef-281c528c63e9"],
           "stepMatchArgumentsLists": [
             {
               "stepMatchArguments": []
@@ -3060,9 +2950,7 @@
         {
           "id": "d14ba90c-5e0a-4eef-b1e3-b6734a026dff",
           "pickleStepId": "f2bc82c0-b67a-4033-b7c8-83cb560a578e",
-          "stepDefinitionIds": [
-            "b2969b83-c2f2-44ab-bf5c-f4be6a04cbc7"
-          ],
+          "stepDefinitionIds": ["b2969b83-c2f2-44ab-bf5c-f4be6a04cbc7"],
           "stepMatchArgumentsLists": [
             {
               "stepMatchArguments": [
@@ -3081,9 +2969,7 @@
         {
           "id": "1e36a4ba-0d70-4ce0-aca0-931e83136228",
           "pickleStepId": "f43506a1-111f-4ca4-b443-12c5733ac2a4",
-          "stepDefinitionIds": [
-            "fa8d7340-24d5-4081-9319-327f5ce6c2cd"
-          ],
+          "stepDefinitionIds": ["fa8d7340-24d5-4081-9319-327f5ce6c2cd"],
           "stepMatchArgumentsLists": [
             {
               "stepMatchArguments": [

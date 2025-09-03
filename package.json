@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "lint": "eslint .",
+    "fix": "eslint --max-warnings 0 features functions src --fix && prettier --write features functions src",
+    "lint": "eslint --max-warnings 0 features functions src && prettier --check features functions src",
     "preview": "vite preview",
     "test:unit": "vitest",
     "test:acceptance": "node --import @cucumber/node/bootstrap --import tsx --test-concurrency=1 --test \"features/**/*.feature\""
@@ -39,9 +40,11 @@
     "eslint": "^9.33.0",
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.20",
+    "eslint-plugin-simple-import-sort": "^12.1.1",
     "globals": "^16.3.0",
     "jsdom": "^26.0.0",
     "postcss": "^8.5.6",
+    "prettier": "^3.6.2",
     "puppeteer": "^24.4.0",
     "sass-embedded": "^1.91.0",
     "tailwindcss": "^4.1.12",

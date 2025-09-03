@@ -27,7 +27,7 @@ export const handler = async (event) => {
       Bucket: process.env.APP_BUCKET_NAME,
       Key: id,
     })
-  } catch(e) {
+  } catch (e) {
     console.error(e)
     return {
       statusCode: 404,
@@ -41,13 +41,17 @@ export const handler = async (event) => {
   const method = event.requestContext.http.method
   switch (method) {
     case 'GET': {
-      const getUrl = await getSignedUrl(s3, new GetObjectCommand({
-        Bucket: process.env.APP_BUCKET_NAME,
-        Key: id,
-      }), { expiresIn: 60 })
+      const getUrl = await getSignedUrl(
+        s3,
+        new GetObjectCommand({
+          Bucket: process.env.APP_BUCKET_NAME,
+          Key: id,
+        }),
+        { expiresIn: 60 }
+      )
       return {
         headers: {
-          'location': getUrl,
+          location: getUrl,
           'content-type': 'text/plain; charset=UTF-8',
         },
         statusCode: 302,

@@ -15,7 +15,10 @@ export class CustomWorld {
 
   public async getOrCreateBrowser(): Promise<Browser> {
     if (!this.browser) {
-      this.browser = await launch({ headless: true, args: ['--no-sandbox', '--disable-setuid-sandbox'] })
+      this.browser = await launch({
+        headless: true,
+        args: ['--no-sandbox', '--disable-setuid-sandbox'],
+      })
     }
     return this.browser
   }

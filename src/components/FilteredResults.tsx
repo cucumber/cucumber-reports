@@ -4,10 +4,10 @@ export const FilteredResults = () => {
   return (
     <div>
       <div className="mb-5">
-        <ExecutionSummary/>
-        <SearchBar/>
+        <ExecutionSummary />
+        <SearchBar />
       </div>
-      <FilteredDocuments/>
+      <FilteredDocuments />
     </div>
   )
 }

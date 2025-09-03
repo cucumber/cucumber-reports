@@ -1,8 +1,9 @@
-import type {FC} from 'react'
+import type { Envelope } from '@cucumber/messages'
 import { EnvelopesProvider, InMemorySearchProvider } from '@cucumber/react-components'
-import { FilteredResults } from './FilteredResults'
+import type { FC } from 'react'
+
 import sampleJson from '../assets/sample.json'
-import type {Envelope} from "@cucumber/messages";
+import { FilteredResults } from './FilteredResults'
 
 const envelopes = sampleJson as ReadonlyArray<Envelope>
 

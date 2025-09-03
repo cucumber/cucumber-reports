@@ -5,7 +5,8 @@ import { stripVTControlCharacters } from 'node:util'
 describe('touch function', () => {
   describe('makeReportBanner', () => {
     it('returns a banner with the report URL', () => {
-      expect(stripVTControlCharacters(makeReportBanner('https://reports.cucumber.io/report/123'))).toMatchInlineSnapshot(`
+      expect(stripVTControlCharacters(makeReportBanner('https://reports.cucumber.io/report/123')))
+        .toMatchInlineSnapshot(`
         "┌────────────────────────────────────────┐
         │ View your Cucumber Report at:          │
         │ https://reports.cucumber.io/report/123 │

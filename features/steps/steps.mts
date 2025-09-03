@@ -18,7 +18,7 @@ Given('a Cucumber implementation that omits some fields', async (t) => {
 })
 
 Given('{actor} has a private token', async (t, actor: Actor) => {
-  actor.remember('privateToken', crypto.randomBytes(16).toString('hex'));
+  actor.remember('privateToken', crypto.randomBytes(16).toString('hex'))
 })
 
 Given('a report previously published by {actor} has been deleted', async (t, actor: Actor) => {
@@ -30,7 +30,9 @@ Given('a report previously published by {actor} has been deleted', async (t, act
 })
 
 When('{actor} publishes a report', async (t, actor: Actor) => {
-  const publishResult = await actor.attemptsTo(publishReport(t.world.messagesFixture, actor.recall('privateToken')))
+  const publishResult = await actor.attemptsTo(
+    publishReport(t.world.messagesFixture, actor.recall('privateToken'))
+  )
   actor.remember('publishResult', publishResult)
   t.world.publishResults.push(publishResult)
 })
@@ -77,7 +79,10 @@ Then('{actor} should see that the report is scheduled for deletion', async (t, a
 })
 
 Then('{actor} should see the message:', async (t, actor: Actor, expectedBanner: string) => {
-  assert.strictEqual(actor.recall<PublishResult>('publishResult').banner.trim(), expectedBanner.trim())
+  assert.strictEqual(
+    actor.recall<PublishResult>('publishResult').banner.trim(),
+    expectedBanner.trim()
+  )
 })
 
 Then('no report should be published', async (t) => {

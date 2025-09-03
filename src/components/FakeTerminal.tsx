@@ -1,8 +1,10 @@
-import type {FC, PropsWithChildren} from 'react';
+import type { FC, PropsWithChildren } from 'react'
 
-export const FakeTerminal: FC<PropsWithChildren<{
-  title?: string;
-}>> = ({ children, title }) => {
+export const FakeTerminal: FC<
+  PropsWithChildren<{
+    title?: string
+  }>
+> = ({ children, title }) => {
   return (
     <div className="w-full relative">
       <div className="bg-slate-800 text-white p-5 shadow-lg rounded-lg">

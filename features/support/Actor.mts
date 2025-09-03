@@ -8,10 +8,7 @@ export class Actor {
   public readonly world: World
   public readonly name: string
 
-  constructor(
-    world: World,
-    name: string,
-  ) {
+  constructor(world: World, name: string) {
     this.world = world
     this.name = name
   }

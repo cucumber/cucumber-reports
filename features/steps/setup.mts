@@ -1,7 +1,10 @@
 import { ParameterType as defineParameterType, WorldCreator } from '@cucumber/node'
 import { CustomWorld } from '../support/CustomWorld.mjs'
 
-WorldCreator(() => new CustomWorld(), async (world: CustomWorld) => world.destroyBrowser())
+WorldCreator(
+  () => new CustomWorld(),
+  async (world: CustomWorld) => world.destroyBrowser()
+)
 
 defineParameterType({
   name: 'actor',
@@ -10,4 +13,3 @@ defineParameterType({
     return this.findOrCreateActor(actorName)
   },
 })
-

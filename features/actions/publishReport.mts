@@ -3,22 +3,30 @@ import { stripVTControlCharacters } from 'node:util'
 import { readFileSync } from 'node:fs'
 import path from 'node:path'
 import { type Action } from '../support/Actor.mjs'
-import  { type PublishResult } from './types'
+import { type PublishResult } from './types'
 
-export const publishReport: (fixture: string, privateToken?: string) => Action<PublishResult> = (fixture, privateToken) => {
+export const publishReport: (fixture: string, privateToken?: string) => Action<PublishResult> = (
+  fixture,
+  privateToken
+) => {
   return async () => {
     const headers = new Headers()
     if (privateToken) {
       headers.set('Authorization', `Bearer ${privateToken}`)
     }
-    const getResponse = await fetch('http://touch.lambda-url.us-east-2.localhost.localstack.cloud:4566', { headers })
+    const getResponse = await fetch(
+      'http://touch.lambda-url.us-east-2.localhost.localstack.cloud:4566',
+      { headers }
+    )
 
     const banner = stripVTControlCharacters(await getResponse.text())
-    const url = banner.split(' ').find(part => part.startsWith('http'))
+    const url = banner.split(' ').find((part) => part.startsWith('http'))
 
     if (getResponse.ok && url) {
       const putUrl = getResponse.headers.get('Location') as string
-      const envelopes = readFileSync(path.join(import.meta.dirname, '..', 'fixtures', fixture), { encoding: 'utf-8' })
+      const envelopes = readFileSync(path.join(import.meta.dirname, '..', 'fixtures', fixture), {
+        encoding: 'utf-8',
+      })
       const putResponse = await fetch(putUrl, {
         method: 'PUT',
         body: envelopes,
@@ -29,7 +37,7 @@ export const publishReport: (fixture: string, privateToken?: string) => Action<P
     return {
       success: getResponse.ok,
       banner,
-      url
+      url,
     }
   }
 }
