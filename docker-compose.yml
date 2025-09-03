@@ -8,6 +8,7 @@ services:
       - SERVICES=s3,lambda
       - DEBUG=0
       - DISABLE_CORS_CHECKS=1
+      - LAMBDA_SYNCHRONOUS_CREATE=1
     volumes:
       - "./localstack:/etc/localstack/init/ready.d"
       - "./functions:/etc/functions"
