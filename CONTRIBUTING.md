@@ -21,11 +21,11 @@ To run the app:
 # Spins up LocalStack for AWS services
 docker compose up
 
-# Starts the Next.js app
+# Starts the React app
 npm run dev
 ```
 
-With that done, you should see the landing page at http://localhost:3000.
+With that done, you should see the landing page at http://localhost:5173.
 
 ## Running the tests
 
@@ -43,5 +43,5 @@ npm run test:acceptance
 
 ## Testing with Cucumber
 
-You can point Cucumber at your locally running app by setting the `CUCUMBER_PUBLISH_URL` environment variable to `http://localhost:3000/api/reports`.
+You can point Cucumber at your locally running app by setting the `CUCUMBER_PUBLISH_URL` environment variable to `http://touch.lambda-url.us-east-2.localhost.localstack.cloud:4566`.
 

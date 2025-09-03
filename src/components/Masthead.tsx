@@ -1,14 +1,13 @@
-import { FC } from 'react'
-import logo from '@/app/icon.svg'
-import Image from 'next/image'
-import Link from 'next/link'
+import type {FC} from 'react'
+import logo from '../assets/icon.svg'
+import {Link} from "react-router-dom";
 
 export const Masthead: FC = () => {
   return (
     <nav className="sticky top-0 left-0 right-0 z-10 p-3 bg-white shadow-sm">
       <div className="flex items-center justify-between max-w-7xl px-4 mx-auto">
-        <Link href="/" className="flex items-center gap-2">
-          <Image alt="" src={logo} width="30" height="30" />
+        <Link to="/" className="flex items-center gap-2">
+          <img alt="" src={logo} width="30" height="30" />
           <b>Cucumber Reports</b>
         </Link>
         <span className="flex items-center gap-2 text-slate-600">

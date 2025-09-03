@@ -2,8 +2,8 @@ import assert from 'node:assert'
 import { stripVTControlCharacters } from 'node:util'
 import { readFileSync } from 'node:fs'
 import path from 'node:path'
-import { Action } from '../support/Actor.mjs'
-import { PublishResult } from './types'
+import { type Action } from '../support/Actor.mjs'
+import  { type PublishResult } from './types'
 
 export const publishReport: (fixture: string, privateToken?: string) => Action<PublishResult> = (fixture, privateToken) => {
   return async () => {

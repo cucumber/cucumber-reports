@@ -1,4 +1,4 @@
-import { World } from '@cucumber/node'
+import { type World } from '@cucumber/node'
 
 export type Action<Answer = void> = (actor: Actor) => Promise<Answer> | Answer
 export type DefaultFunction<T> = () => T

@@ -1,5 +1,5 @@
 import { Page } from 'puppeteer'
-import { Action, Actor } from '../support/Actor.mjs'
+import { type Action, Actor } from '../support/Actor.mjs'
 
 export const navigateToSite: () => Action<Page> = () => {
   return async (actor: Actor) => {

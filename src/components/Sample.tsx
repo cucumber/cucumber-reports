@@ -1,15 +1,12 @@
-'use client'
-
-import { useEnvelopes } from '@/hooks/useEnvelopes'
-import { FC } from 'react'
+import type {FC} from 'react'
 import { EnvelopesProvider, InMemorySearchProvider } from '@cucumber/react-components'
 import { FilteredResults } from './FilteredResults'
+import sampleJson from '../assets/sample.json'
+import type {Envelope} from "@cucumber/messages";
+
+const envelopes = sampleJson as ReadonlyArray<Envelope>
 
 export const Sample: FC = () => {
-  const { data: envelopes } = useEnvelopes('sample', '/sample-envelopes.ndjson')
-  if (!envelopes) {
-    return null
-  }
   return (
     <div data-testid="sample">
       <EnvelopesProvider envelopes={envelopes}>

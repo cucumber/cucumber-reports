@@ -1,5 +1,5 @@
 import { Page } from 'puppeteer'
-import { Action } from '../support/Actor.mjs'
+import { type Action } from '../support/Actor.mjs'
 
 export const canSeeResults: (page: Page) => Action<boolean> = (page) => {
   return async () => {
