@@ -49,6 +49,7 @@ jobs:
           node-version: 23.x
       - run: npm ci
       - run: docker compose up -d
+      - run: sleep 10s
       - run: "npx -y start-server-and-test dev http://localhost:5173 test:acceptance"
       - run: docker compose down
         if: always()
