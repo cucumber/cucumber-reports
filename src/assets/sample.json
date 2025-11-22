@@ -22,7 +22,7 @@
   {
     "source": {
       "uri": "features/deletion.feature",
-      "data": "Feature: Deletion\n\n  Reports aren't kept around forever. They are automatically deleted after a\n  short period, and can also be proactively deleted by the user.\n\n  Scenario: Deletion is scheduled for 24 hours after publication\n    When Bruno publishes a report\n    And Bruno views the report they just published\n    Then Bruno should see that the report is scheduled for deletion\n\n  Scenario: Proactively deleting a report\n\n  One can always wait for the automatic deletion, but if a report has\n  accidentally included sensitive information, it can be deleted proactively.\n\n    When Clara publishes a report\n    And Clara views the report they just published\n    And Clara deletes the report\n    Then Clara should see that the report was deleted\n\n  Scenario: Viewing a deleted report\n\n  The link for a report might be saved and opened sometime after deletion.\n\n    Given a report previously published by Esme has been deleted\n    When Esme attempts to view their report\n    Then Esme should see that no report was found",
+      "data": "Feature: Deletion\n\n  Reports aren't kept around forever.\n\n  They are automatically deleted after a short period, and can also be proactively deleted by the user.\n\n  Scenario: Deletion is scheduled for 24 hours after publication\n    When Bruno publishes a report\n    And Bruno views the report they just published\n    Then Bruno should see that the report is scheduled for deletion\n\n  Scenario: Proactively deleting a report\n\n  One can always wait for the automatic deletion, but if a report has\n  accidentally included sensitive information, it can be deleted proactively.\n\n    When Clara publishes a report\n    And Clara views the report they just published\n    And Clara deletes the report\n    Then Clara should see that the report was deleted\n\n  Scenario: Viewing a deleted report\n\n  The link for a report might be saved and opened sometime after deletion.\n\n    Given a report previously published by Esme has been deleted\n    When Esme attempts to view their report\n    Then Esme should see that no report was found",
       "mediaType": "text/x.cucumber.gherkin+plain"
     }
   },
@@ -38,7 +38,7 @@
         "language": "en",
         "keyword": "Feature",
         "name": "Deletion",
-        "description": "  Reports aren't kept around forever. They are automatically deleted after a\n  short period, and can also be proactively deleted by the user.",
+        "description": "  Reports aren't kept around forever.\n\n  They are automatically deleted after a short period, and can also be proactively deleted by the user.",
         "children": [
           {
             "scenario": {
