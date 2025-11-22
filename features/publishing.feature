@@ -16,3 +16,9 @@ Feature: Publishing
     When Ira publishes a report
     And Ira views the report they just published
     Then Ira should see their test results
+
+  Scenario: Report content can be compressed
+    Given a Cucumber implementation that compresses content
+    When Jaqueline publishes a report
+    And Jaqueline views the report they just published
+    Then Jaqueline should see their test results
