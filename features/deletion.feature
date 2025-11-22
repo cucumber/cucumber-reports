@@ -1,6 +1,8 @@
 Feature: Deletion
 
-  Reports aren't kept around forever. They are automatically deleted after a
+  Reports aren't kept around forever.
+
+  They are automatically deleted after a
   short period, and can also be proactively deleted by the user.
 
   Scenario: Deletion is scheduled for 24 hours after publication
