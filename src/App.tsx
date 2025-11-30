@@ -1,5 +1,6 @@
 import { Route, Routes } from 'react-router-dom'
 
+import { Ad } from './components/Ad.tsx'
 import { Footer } from './components/Footer.tsx'
 import { Masthead } from './components/Masthead.tsx'
 import ScrollToTop from './components/ScrollToTop'
@@ -19,6 +20,7 @@ function App() {
         <Route path="/terms" element={<Terms />} />
         <Route path="/reports/:id" element={<Report />} />
       </Routes>
+      <Ad />
       <Footer />
     </>
   )
