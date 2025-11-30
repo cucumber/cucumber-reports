@@ -16,8 +16,9 @@ function AdInternal() {
 
   return (
     <div
+      className="horizontal"
       data-ea-publisher="cucumberio"
-      data-ea-type="text"
+      data-ea-type="image"
     />
   )
 }
