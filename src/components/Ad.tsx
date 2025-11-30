@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { ErrorBoundary } from 'react-error-boundary'
 
 declare global {
   interface Window {
@@ -10,7 +11,7 @@ declare global {
   }
 }
 
-export function Ad() {
+function AdInternal() {
   useEffect(() => {
     window.ethicalads?.reload()
   }, [])
@@ -20,5 +21,13 @@ export function Ad() {
       data-ea-publisher="cucumberio"
       data-ea-type="text"
     />
+  )
+}
+
+export function Ad() {
+  return (
+    <ErrorBoundary fallback={null}>
+      <AdInternal />
+    </ErrorBoundary>
   )
 }
