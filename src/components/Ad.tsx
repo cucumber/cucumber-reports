@@ -5,8 +5,6 @@ declare global {
   interface Window {
     ethicalads?: {
       reload: () => void
-      load: () => void
-      wait: Promise<unknown>
     }
   }
 }
