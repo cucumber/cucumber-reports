@@ -1,6 +1,7 @@
 import { EnvelopesProvider, UrlSearchProvider } from '@cucumber/react-components'
 import { useParams } from 'react-router-dom'
 
+import { Ad } from '../components/Ad.tsx'
 import { FilteredResults } from '../components/FilteredResults.tsx'
 import { useDelete } from '../hooks/useDelete.ts'
 import { useEnvelopes } from '../hooks/useEnvelopes.ts'
@@ -32,17 +33,20 @@ function Report() {
 
   return (
     <main className="flex-grow w-full max-w-7xl p-8 mx-auto">
-      <header className="text-center mb-8">
-        <h1 className="text-3xl font-bold">Your report</h1>
-        <p>
-          It will be automatically deleted after 24 hours.{' '}
-          <button
-            onClick={handleDelete}
-            className="bg-red-700 text-white text-sm px-2 py-1 rounded-sm ml-1 cursor-pointer"
-          >
-            Delete it now
-          </button>
-        </p>
+      <header className="flex items-center justify-between gap-8 mb-8">
+        <div>
+          <h1 className="text-5xl font-light mb-2">Your report from <strong className="font-bold">Cucumber</strong></h1>
+          <p className="text-xl">
+            It will be automatically deleted after 24 hours.{' '}
+            <button
+              onClick={handleDelete}
+              className="bg-red-700 text-white text-sm px-2 py-1 rounded-sm ml-1 cursor-pointer"
+            >
+              Delete it now
+            </button>
+          </p>
+        </div>
+        <Ad />
       </header>
       <article data-testid="report">
         <EnvelopesProvider envelopes={envelopes}>
