@@ -9,7 +9,5 @@ WorldCreator(
 defineParameterType({
   name: 'actor',
   regexp: /[A-Z][a-z]+/,
-  transformer(this: CustomWorld, actorName: string) {
-    return this.findOrCreateActor(actorName)
-  },
+  transformer: (t, actorName: string) => t.world.findOrCreateActor(actorName),
 })
