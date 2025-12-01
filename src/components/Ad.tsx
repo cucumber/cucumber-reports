@@ -14,13 +14,7 @@ function AdInternal() {
     window.ethicalads?.reload()
   }, [])
 
-  return (
-    <div
-      className="horizontal bordered"
-      data-ea-publisher="cucumberio"
-      data-ea-type="image"
-    />
-  )
+  return <div className="horizontal bordered" data-ea-publisher="cucumberio" data-ea-type="image" />
 }
 
 export function Ad() {

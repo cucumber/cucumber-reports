@@ -35,7 +35,9 @@ function Report() {
     <main className="flex-grow w-full max-w-7xl p-8 mx-auto">
       <header className="flex items-center justify-between gap-8 mb-8">
         <div>
-          <h1 className="text-5xl font-light mb-2">Your report from <strong className="font-bold">Cucumber</strong></h1>
+          <h1 className="text-5xl font-light mb-2">
+            Your report from <strong className="font-bold">Cucumber</strong>
+          </h1>
           <p className="text-xl">
             It will be automatically deleted after 24 hours.{' '}
             <button
