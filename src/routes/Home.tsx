@@ -1,5 +1,6 @@
 import { Link, useSearchParams } from 'react-router-dom'
 
+import { Ad } from '../components/Ad.tsx'
 import { FakeTerminal } from '../components/FakeTerminal.tsx'
 import { FakeWindow } from '../components/FakeWindow.tsx'
 import { Jvm } from '../components/icons/Jvm.tsx'
@@ -12,11 +13,14 @@ function Home() {
   return (
     <main className="flex-grow bg-slate-50">
       <div className="max-w-7xl p-8 mx-auto">
-        <header className="text-center mb-8">
-          <h1 className="text-5xl font-light">
-            <strong className="font-bold">Cucumber</strong> Reports
-          </h1>
-          <p className="text-xl">Publish and share your test reports, straight from Cucumber.</p>
+        <header className="flex items-center justify-between gap-8 mb-8">
+          <div>
+            <h1 className="text-5xl font-light mb-2">
+              <strong className="font-bold">Cucumber</strong> Reports
+            </h1>
+            <p className="text-xl">Publish and share your test reports, straight from Cucumber.</p>
+          </div>
+          <Ad />
         </header>
 
         {searchParams.has('deleted') && (
