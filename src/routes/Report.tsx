@@ -1,7 +1,10 @@
-import { EnvelopesProvider, UrlSearchProvider } from '@cucumber/react-components'
+import {
+  EnvelopesProvider,
+  Report as LibraryReport,
+  UrlSearchProvider,
+} from '@cucumber/react-components'
 import { useParams } from 'react-router-dom'
 
-import { FilteredResults } from '../components/FilteredResults.tsx'
 import { useDelete } from '../hooks/useDelete.ts'
 import { useEnvelopes } from '../hooks/useEnvelopes.ts'
 
@@ -47,7 +50,7 @@ function Report() {
       <article data-testid="report">
         <EnvelopesProvider envelopes={envelopes}>
           <UrlSearchProvider>
-            <FilteredResults />
+            <LibraryReport />
           </UrlSearchProvider>
         </EnvelopesProvider>
       </article>
