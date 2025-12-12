@@ -24,17 +24,18 @@ export function useEnvelopes(id: string) {
 export function setTags(response: Response, envelopes: ReadonlyArray<Envelope>) {
   try {
     Sentry.setTags({
-      'envelopes_compression': response.headers.get('Content-Encoding') == 'gzip' ? 'compressed' : 'uncompressed'
+      envelopes_compression:
+        response.headers.get('Content-Encoding') == 'gzip' ? 'compressed' : 'uncompressed',
     })
-    const meta = envelopes.find(e => e.meta)?.meta
+    const meta = envelopes.find((e) => e.meta)?.meta
     if (meta) {
       Sentry.setTags({
-        'meta_os_name': meta.os.name,
-        'meta_os_version': meta.os.version,
-        'meta_runtime_name': meta.runtime.name,
-        'meta_runtime_version': meta.runtime.version,
-        'meta_implementation_name': meta.implementation.name,
-        'meta_implementation_version': meta.implementation.version
+        meta_os_name: meta.os.name,
+        meta_os_version: meta.os.version,
+        meta_runtime_name: meta.runtime.name,
+        meta_runtime_version: meta.runtime.version,
+        meta_implementation_name: meta.implementation.name,
+        meta_implementation_version: meta.implementation.version,
       })
     }
   } catch {
