@@ -11,6 +11,7 @@ import App from './App.tsx'
 
 Sentry.init({
   dsn: 'https://c3ae677edf55795aca256db1bb0e7aa3@o4509553056546816.ingest.us.sentry.io/4509553058250752',
+  enableLogs: true
 })
 
 ReactGA.initialize('G-22NQZFFMH7')
