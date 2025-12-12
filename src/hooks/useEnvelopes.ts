@@ -1,4 +1,5 @@
 import { Envelope, parseEnvelope } from '@cucumber/messages'
+import * as Sentry from '@sentry/react'
 import { useQuery } from '@tanstack/react-query'
 
 export function useEnvelopes(id: string) {
@@ -10,10 +11,34 @@ export function useEnvelopes(id: string) {
         throw new Error('Failed to fetch envelopes', { cause: response })
       }
       const raw = await response.text()
-      return raw
+      const envelopes = raw
         .trim()
         .split('\n')
         .map((s) => parseEnvelope(s))
+      setTags(response, envelopes)
+      return envelopes
     },
   })
+}
+
+export function setTags(response: Response, envelopes: ReadonlyArray<Envelope>) {
+  try {
+    Sentry.setTags({
+      envelopes_compression:
+        response.headers.get('Content-Encoding') == 'gzip' ? 'compressed' : 'uncompressed',
+    })
+    const meta = envelopes.find((e) => e.meta)?.meta
+    if (meta) {
+      Sentry.setTags({
+        meta_os_name: meta.os.name,
+        meta_os_version: meta.os.version,
+        meta_runtime_name: meta.runtime.name,
+        meta_runtime_version: meta.runtime.version,
+        meta_implementation_name: meta.implementation.name,
+        meta_implementation_version: meta.implementation.version,
+      })
+    }
+  } catch {
+    // dont block the user in case Sentry itself errors
+  }
 }
