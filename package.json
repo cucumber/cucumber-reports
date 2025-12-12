@@ -17,7 +17,7 @@
     "@aws-sdk/s3-request-presigner": "^3.731.1",
     "@cucumber/messages": "^31.0.0",
     "@cucumber/react-components": "^24.1.2",
-    "@sentry/react": "^10.8.0",
+    "@sentry/react": "^10.30.0",
     "@tanstack/react-query": "^5.85.6",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",

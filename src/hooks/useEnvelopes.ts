@@ -23,6 +23,7 @@ export function useEnvelopes(id: string) {
 
 export function setTags(response: Response, envelopes: ReadonlyArray<Envelope>) {
   try {
+    Sentry.metrics.count('envelopes_fetch', 1)
     Sentry.setTags({
       envelopes_compression:
         response.headers.get('Content-Encoding') == 'gzip' ? 'compressed' : 'uncompressed',
