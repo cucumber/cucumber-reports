@@ -5,11 +5,10 @@
   "private": true,
   "scripts": {
     "dev": "vite",
-    "dev:touch": "wrangler dev --port 8787 --config functions/touch/wrangler.toml",
-    "dev:crud": "wrangler dev --port 8788 --config functions/crud/wrangler.toml",
+    "dev:worker": "wrangler dev --port 8787",
     "build": "tsc -b && vite build",
-    "fix": "eslint --max-warnings 0 features functions src --fix && prettier --write features functions src",
-    "lint": "eslint --max-warnings 0 features functions src && prettier --check features functions src",
+    "fix": "eslint --max-warnings 0 features src --fix && prettier --write features src",
+    "lint": "eslint --max-warnings 0 features src && prettier --check features src",
     "preview": "vite preview",
     "test:unit": "vitest",
     "test:acceptance": "node --import @cucumber/node/bootstrap --import tsx --test-concurrency=1 --test \"features/**/*.feature\""
@@ -45,7 +44,6 @@
     "eslint-plugin-simple-import-sort": "^12.1.1",
     "globals": "^17.0.0",
     "jsdom": "^28.0.0",
-    "miniflare": "^4.20250121.2",
     "postcss": "^8.5.6",
     "prettier": "^3.6.2",
     "puppeteer": "^24.4.0",

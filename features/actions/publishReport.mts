@@ -1,35 +1,36 @@
-import { readFileSync } from 'node:fs'
+import { execSync } from 'node:child_process'
 import path from 'node:path'
 import { stripVTControlCharacters } from 'node:util'
 
 import { type Action } from '../support/Actor.mjs'
-import { putR2Object } from '../support/miniflare.mts'
-import { type PublishResult, type RequestComposer } from './types'
+import { type PublishResult } from './types'
 
 export const publishReport: (
   fixture: string,
-  requestComposer: RequestComposer,
+  contentEncoding: string | undefined,
   privateToken?: string
-) => Action<PublishResult> = (fixture, _requestComposer, privateToken) => {
+) => Action<PublishResult> = (fixture, contentEncoding, privateToken) => {
   return async () => {
     const headers = new Headers()
     if (privateToken) {
       headers.set('Authorization', `Bearer ${privateToken}`)
     }
-    const getResponse = await fetch('http://localhost:8787', { headers })
+    const getResponse = await fetch('http://localhost:8787/api/reports', { headers })
 
     const banner = stripVTControlCharacters(await getResponse.text())
     const url = banner.split(' ').find((part) => part.startsWith('http'))
 
     if (getResponse.ok && url) {
-      // extract report ID from the URL (e.g., http://localhost:5173/reports/{id})
       const id = url.split('/').at(-1)
       if (id) {
-        const envelopes = readFileSync(path.join(import.meta.dirname, '..', 'fixtures', fixture), {
-          encoding: 'utf-8',
-        })
-        // use Miniflare to put data directly into R2
-        await putR2Object(id, envelopes)
+        const fixturePath = path.join(import.meta.dirname, '..', 'fixtures', fixture)
+
+        let cmd = `npx wrangler r2 object put cucumber-reports-anonymous-envelopes/${id} --file=${fixturePath} --local`
+        if (contentEncoding) {
+          cmd += ` --content-encoding=${contentEncoding}`
+        }
+
+        execSync(cmd, { stdio: 'pipe' })
       }
     }
 

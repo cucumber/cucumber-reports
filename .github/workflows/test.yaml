@@ -48,7 +48,6 @@ jobs:
         with:
           node-version: 23.x
       - run: npm ci
-      - run: npx wrangler dev --port 8787 --config functions/touch/wrangler.toml &
-      - run: npx wrangler dev --port 8788 --config functions/crud/wrangler.toml &
+      - run: npx wrangler dev --port 8787 &
       - run: sleep 3
       - run: "npx -y start-server-and-test dev http://localhost:5173 test:acceptance"

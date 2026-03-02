@@ -1,8 +1,10 @@
-import { describe, expect, it } from 'vitest'
-import { makeReportBanner, makeTokenBanner } from './index.ts'
 import { stripVTControlCharacters } from 'node:util'
 
-describe('touch function', () => {
+import { describe, expect, it } from 'vitest'
+
+import { makeReportBanner, makeTokenBanner } from './index.ts'
+
+describe('worker', () => {
   describe('makeReportBanner', () => {
     it('returns a banner with the report URL', () => {
       expect(stripVTControlCharacters(makeReportBanner('https://reports.cucumber.io/report/123')))

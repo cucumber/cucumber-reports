@@ -1,25 +1,27 @@
-import { Given, Then, When } from '@cucumber/node'
-import { publishReport } from '../actions/publishReport.mjs'
-import { Actor } from '../support/Actor.mjs'
-import { retrieveReport } from '../actions/retrieveReport.mjs'
 import assert from 'node:assert'
 import crypto from 'node:crypto'
+
+import { Given, Then, When } from '@cucumber/node'
+
 import { canSeeResults } from '../actions/canSeeResults.mjs'
-import { type PublishResult } from '../actions/types'
-import { isScheduledForDeletion } from '../actions/isScheduledForDeletion.mjs'
+import { canSeeSample } from '../actions/canSeeSample.mjs'
 import { deleteReport } from '../actions/deleteReport.mjs'
+import { isScheduledForDeletion } from '../actions/isScheduledForDeletion.mjs'
+import { navigateToSite } from '../actions/navigateToSite.mjs'
+import { publishReport } from '../actions/publishReport.mjs'
+import { retrieveReport } from '../actions/retrieveReport.mjs'
+import { type PublishResult } from '../actions/types'
 import { wasDeleted } from '../actions/wasDeleted.mjs'
 import { wasNotFound } from '../actions/wasNotFound.mjs'
-import { navigateToSite } from '../actions/navigateToSite.mjs'
-import { canSeeSample } from '../actions/canSeeSample.mjs'
-import { composeGzipped } from '../actions/composeGzipped.mts'
+import { Actor } from '../support/Actor.mjs'
 
 Given('a Cucumber implementation that omits some fields', async (t) => {
   t.world.messagesFixture = 'messages-omissions.ndjson'
 })
 
 Given('a Cucumber implementation that compresses content', async (t) => {
-  t.world.requestComposer = composeGzipped
+  t.world.messagesFixture = 'messages-valid.ndjson.gz'
+  t.world.contentEncoding = 'gzip'
 })
 
 Given('{actor} has a private token', async (t, actor: Actor) => {
@@ -36,7 +38,7 @@ Given('a report previously published by {actor} has been deleted', async (t, act
 
 When('{actor} publishes a report', async (t, actor: Actor) => {
   const publishResult = await actor.attemptsTo(
-    publishReport(t.world.messagesFixture, t.world.requestComposer, actor.recall('privateToken'))
+    publishReport(t.world.messagesFixture, t.world.contentEncoding, actor.recall('privateToken'))
   )
   actor.remember('publishResult', publishResult)
   t.world.publishResults.push(publishResult)

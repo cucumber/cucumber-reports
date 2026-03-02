@@ -1,14 +1,14 @@
 import { Browser, launch } from 'puppeteer'
-import { ActorLookup } from './ActorLookup.mjs'
+
+import { type PublishResult } from '../actions/types'
 import { Actor } from './Actor.mjs'
-import { type RequestComposer, type PublishResult } from '../actions/types'
-import { composeUncompressed } from '../actions/composeUncompressed.mjs'
+import { ActorLookup } from './ActorLookup.mjs'
 
 export class CustomWorld {
   private readonly actorLookup = new ActorLookup()
   private browser: Browser | undefined
   public messagesFixture = 'messages-valid.ndjson'
-  public requestComposer: RequestComposer = composeUncompressed
+  public contentEncoding: string | undefined
   public publishResults: Array<PublishResult> = []
 
   public findOrCreateActor(actorName: string): Actor {
