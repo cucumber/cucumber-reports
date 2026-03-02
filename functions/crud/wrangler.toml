@@ -1,0 +1,11 @@
+name = "cucumber-reports-crud"
+main = "index.ts"
+compatibility_date = "2024-01-01"
+compatibility_flags = ["nodejs_compat"]
+
+[vars]
+ALLOWED_ORIGIN = "http://localhost:5173"
+
+[[r2_buckets]]
+binding = "REPORTS_BUCKET"
+bucket_name = "cucumber-reports-anonymous-envelopes"

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { makeReportBanner, makeTokenBanner } from './index.mjs'
+import { makeReportBanner, makeTokenBanner } from './index.ts'
 import { stripVTControlCharacters } from 'node:util'
 
 describe('touch function', () => {

@@ -5,6 +5,8 @@
   "private": true,
   "scripts": {
     "dev": "vite",
+    "dev:touch": "wrangler dev --port 8787 --config functions/touch/wrangler.toml",
+    "dev:crud": "wrangler dev --port 8788 --config functions/crud/wrangler.toml",
     "build": "tsc -b && vite build",
     "fix": "eslint --max-warnings 0 features functions src --fix && prettier --write features functions src",
     "lint": "eslint --max-warnings 0 features functions src && prettier --check features functions src",
@@ -13,12 +15,11 @@
     "test:acceptance": "node --import @cucumber/node/bootstrap --import tsx --test-concurrency=1 --test \"features/**/*.feature\""
   },
   "dependencies": {
-    "@aws-sdk/client-s3": "^3.731.1",
-    "@aws-sdk/s3-request-presigner": "^3.731.1",
     "@cucumber/messages": "^32.0.0",
     "@cucumber/react-components": "^24.1.2",
     "@sentry/react": "^10.30.0",
     "@tanstack/react-query": "^5.85.6",
+    "aws4fetch": "^1.0.20",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-error-boundary": "^6.0.0",
@@ -26,13 +27,13 @@
     "react-router-dom": "^7.8.2"
   },
   "devDependencies": {
+    "@cloudflare/workers-types": "^4.20241230.0",
     "@cucumber/node": "^0.6.0",
     "@eslint/js": "^9.33.0",
     "@tailwindcss/postcss": "^4.1.12",
     "@tailwindcss/typography": "^0.5.16",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/react": "^16.2.0",
-    "@types/aws-lambda": "^8.10.152",
     "@types/node": "^22.15.32",
     "@types/react": "^19.1.10",
     "@types/react-dom": "^19.1.7",
@@ -44,6 +45,7 @@
     "eslint-plugin-simple-import-sort": "^12.1.1",
     "globals": "^17.0.0",
     "jsdom": "^28.0.0",
+    "miniflare": "^4.20250121.2",
     "postcss": "^8.5.6",
     "prettier": "^3.6.2",
     "puppeteer": "^24.4.0",
@@ -54,6 +56,7 @@
     "typescript-eslint": "^8.39.1",
     "vite": "^7.1.2",
     "vitest": "^4.0.0",
+    "wrangler": "^4.16.0",
     "zod": "^4.1.12"
   }
 }
