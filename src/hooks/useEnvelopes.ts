@@ -2,6 +2,8 @@ import { Envelope, parseEnvelope } from '@cucumber/messages'
 import * as Sentry from '@sentry/react'
 import { useQuery } from '@tanstack/react-query'
 
+import { validateEnvelopes } from '../lib/validateEnvelopes'
+
 export function useEnvelopes(id: string) {
   return useQuery({
     queryKey: ['envelopes', id],
@@ -11,24 +13,26 @@ export function useEnvelopes(id: string) {
         throw new Error('Failed to fetch envelopes', { cause: response })
       }
       const raw = await response.text()
-      const envelopes = raw
-        .trim()
-        .split('\n')
-        .map((s) => parseEnvelope(s))
-      setTags(response, envelopes)
-      return envelopes
+      const envelopes = raw.trim().split('\n')
+      const parsed = envelopes.map((s) => parseEnvelope(s))
+      emitTelemetry(response, envelopes, parsed)
+      return parsed
     },
   })
 }
 
-export function setTags(response: Response, envelopes: ReadonlyArray<Envelope>) {
+export function emitTelemetry(
+  response: Response,
+  envelopes: ReadonlyArray<string>,
+  parsed: ReadonlyArray<Envelope>
+) {
   try {
     Sentry.metrics.count('envelopes_fetch', 1)
     Sentry.setTags({
       envelopes_compression:
         response.headers.get('Content-Encoding') == 'gzip' ? 'compressed' : 'uncompressed',
     })
-    const meta = envelopes.find((e) => e.meta)?.meta
+    const meta = parsed.find((e) => e.meta)?.meta
     if (meta) {
       Sentry.setTags({
         meta_os_name: meta.os.name,
@@ -39,7 +43,12 @@ export function setTags(response: Response, envelopes: ReadonlyArray<Envelope>) 
         meta_implementation_version: meta.implementation.version,
       })
     }
+
+    const invalidPaths = validateEnvelopes(envelopes)
+    for (const path of invalidPaths) {
+      Sentry.metrics.count('envelopes_validity', 1, { attributes: { path } })
+    }
   } catch {
-    // dont block the user in case Sentry itself errors
+    // dont block the user in case our telemetry code or Sentry itself errors
   }
 }
