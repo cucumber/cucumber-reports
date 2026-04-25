@@ -6,15 +6,13 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "fix": "eslint --max-warnings 0 features functions src --fix && prettier --write features functions src",
-    "lint": "eslint --max-warnings 0 features functions src && prettier --check features functions src",
+    "fix": "eslint --max-warnings 0 features src worker --fix && prettier --write features src worker",
+    "lint": "eslint --max-warnings 0 features src worker && prettier --check features src worker",
     "preview": "vite preview",
     "test:unit": "vitest",
-    "test:acceptance": "node --import @cucumber/node/bootstrap --import tsx --test-concurrency=1 --test \"features/**/*.feature\""
+    "test:acceptance": "node --import @cucumber/node/bootstrap --import tsx --test-concurrency=3 --test \"features/**/*.feature\""
   },
   "dependencies": {
-    "@aws-sdk/client-s3": "^3.731.1",
-    "@aws-sdk/s3-request-presigner": "^3.731.1",
     "@cucumber/messages": "^32.2.0",
     "@cucumber/react-components": "^24.1.2",
     "@sentry/react": "^10.30.0",
@@ -23,17 +21,17 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-error-boundary": "^6.0.0",
-    "react-ga4": "^2.1.0",
     "react-router-dom": "^7.8.2"
   },
   "devDependencies": {
-    "@cucumber/node": "^0.6.0",
+    "@cloudflare/vite-plugin": "^1.33.2",
+    "@cloudflare/workers-types": "^4.20260424.1",
+    "@cucumber/node": "^0.6.1",
     "@eslint/js": "^9.33.0",
     "@tailwindcss/postcss": "^4.1.12",
     "@tailwindcss/typography": "^0.5.16",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/react": "^16.2.0",
-    "@types/aws-lambda": "^8.10.152",
     "@types/node": "^22.15.32",
     "@types/react": "^19.1.10",
     "@types/react-dom": "^19.1.7",
@@ -55,6 +53,7 @@
     "typescript-eslint": "^8.39.1",
     "vite": "^7.1.2",
     "vitest": "^4.0.0",
+    "wrangler": "^4.85.0",
     "zod": "^4.1.12"
   }
 }

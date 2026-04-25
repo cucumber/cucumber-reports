@@ -6,9 +6,12 @@ export function useDelete(id: string) {
   const navigate = useNavigate()
   return useMutation({
     mutationFn: async (): Promise<void> => {
-      await fetch(import.meta.env.VITE_MESSAGES_URL_TEMPLATE.replace('{id}', id), {
+      const response = await fetch(`/api/reports/${id}`, {
         method: 'DELETE',
       })
+      if (!response.ok) {
+        throw new Error('Failed to delete report', { cause: response })
+      }
     },
     onSuccess() {
       queryClient.invalidateQueries({ queryKey: ['envelopes', id], refetchType: 'none' })

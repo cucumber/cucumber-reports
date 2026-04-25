@@ -5,7 +5,6 @@
 There are some prerequisites:
 
 - Node.js
-- Docker
 
 To install the dependencies:
 
@@ -18,12 +17,13 @@ npm install
 To run the app:
 
 ```shell
-# Spins up LocalStack for AWS services
-docker compose up
-
-# Starts the React app
 npm run dev
 ```
+
+That brings up:
+
+- [Vite](https://vite.dev/) for the frontend, with hot reloading
+- [Wrangler](https://developers.cloudflare.com/workers/wrangler/) for the Worker and R2 stuff
 
 With that done, you should see the landing page at http://localhost:5173.
 
@@ -43,5 +43,4 @@ npm run test:acceptance
 
 ## Testing with Cucumber
 
-You can point Cucumber at your locally running app by setting the `CUCUMBER_PUBLISH_URL` environment variable to `http://touch.lambda-url.us-east-2.localhost.localstack.cloud:4566`.
-
+You can point Cucumber at your locally running app by setting the `CUCUMBER_PUBLISH_URL` environment variable to `http://localhost:5173/api/reports`. You might want to increase the `UPLOAD_TTL` variable which is set artificially low by default. 

@@ -6,7 +6,7 @@ The source code for Cucumber Reports is [available on GitHub](https://github.com
 
 Publishing is anonymous. No data is collected when you publish except the report content itself. The data is stored in data centers within the United States, and is encrypted at rest. The data is only ever accessed to serve the report content to users on this website or to delete it. We would, if necessary, also access the data to comply with a valid law enforcement request.
 
-We use Google Analytics to track broad usage statistics on this website. No attempt is or will be made to identify individual users or link statistics to data from reports.
+We use Cloudflare Web Analytics to track broad usage statistics on this website. No attempt is or will be made to identify individual users or link statistics to data from reports.
 
 Any copyright, trademark, or other intellectual property rights pertaining to the content of a report remain yours. By publishing, you grant us a worldwide, royalty-free but strictly-limited license for serving the content to users on this website, only until the report is deleted and for no other purpose.
 

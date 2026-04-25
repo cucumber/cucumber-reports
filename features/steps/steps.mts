@@ -1,25 +1,47 @@
-import { Given, Then, When } from '@cucumber/node'
-import { publishReport } from '../actions/publishReport.mjs'
-import { Actor } from '../support/Actor.mjs'
-import { retrieveReport } from '../actions/retrieveReport.mjs'
 import assert from 'node:assert'
 import crypto from 'node:crypto'
+import { setTimeout } from 'node:timers/promises'
+
+import { Given, Then, When } from '@cucumber/node'
+
 import { canSeeResults } from '../actions/canSeeResults.mjs'
-import { type PublishResult } from '../actions/types'
-import { isScheduledForDeletion } from '../actions/isScheduledForDeletion.mjs'
+import { canSeeSample } from '../actions/canSeeSample.mjs'
+import { composeGzipped } from '../actions/composeGzipped.mjs'
+import { composeUncompressed } from '../actions/composeUncompressed.mjs'
 import { deleteReport } from '../actions/deleteReport.mjs'
+import { isScheduledForDeletion } from '../actions/isScheduledForDeletion.mjs'
+import { navigateToSite } from '../actions/navigateToSite.mjs'
+import { publishReport } from '../actions/publishReport.mjs'
+import { retrieveReport } from '../actions/retrieveReport.mjs'
+import { type PublishResult } from '../actions/types'
 import { wasDeleted } from '../actions/wasDeleted.mjs'
 import { wasNotFound } from '../actions/wasNotFound.mjs'
-import { navigateToSite } from '../actions/navigateToSite.mjs'
-import { canSeeSample } from '../actions/canSeeSample.mjs'
-import { composeGzipped } from '../actions/composeGzipped.mts'
+import { Actor } from '../support/Actor.mjs'
 
 Given('a Cucumber implementation that omits some fields', async (t) => {
   t.world.messagesFixture = 'messages-omissions.ndjson'
 })
 
-Given('a Cucumber implementation that compresses content', async (t) => {
-  t.world.requestComposer = composeGzipped
+Given(
+  'a Cucumber implementation that gzips content with type {string} and encoding {string}',
+  async (t, type: string, encoding: string) => {
+    t.world.requestComposer = composeGzipped(type, encoding)
+  }
+)
+
+Given('a Cucumber implementation that exceeds the upload TTL', async (t) => {
+  t.world.requestComposer = async (url: string, content: string) => {
+    await setTimeout(1001)
+    return composeUncompressed(url, content)
+  }
+})
+
+Given('a Cucumber implementation that tampers with the upload URL', async (t) => {
+  t.world.requestComposer = async (url: string, content: string) => {
+    const parsed = new URL(url)
+    parsed.searchParams.set('id', crypto.randomUUID())
+    return composeUncompressed(parsed.toString(), content)
+  }
 })
 
 Given('{actor} has a private token', async (t, actor: Actor) => {
@@ -32,6 +54,14 @@ Given('a report previously published by {actor} has been deleted', async (t, act
     banner: 'Report published',
     url: `http://localhost:5173/reports/${crypto.randomUUID()}`,
   })
+})
+
+When('{actor} attempts to publish a report', async (t, actor: Actor) => {
+  const publishResult = await actor.attemptsTo(
+    publishReport(t.world.messagesFixture, t.world.requestComposer, actor.recall('privateToken'))
+  )
+  actor.remember('publishResult', publishResult)
+  t.world.publishResults.push(publishResult)
 })
 
 When('{actor} publishes a report', async (t, actor: Actor) => {
@@ -88,6 +118,10 @@ Then('{actor} should see the message:', async (t, actor: Actor, expectedBanner: 
     actor.recall<PublishResult>('publishResult').banner.trim(),
     expectedBanner.trim()
   )
+})
+
+Then('the upload should fail with status {int}', async (t, expectedStatus: number) => {
+  assert.strictEqual(t.world.publishResults.at(-1).status, expectedStatus)
 })
 
 Then('no report should be published', async (t) => {

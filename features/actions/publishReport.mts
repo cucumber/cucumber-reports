@@ -1,41 +1,25 @@
-import assert from 'node:assert'
-import { stripVTControlCharacters } from 'node:util'
-import { readFileSync } from 'node:fs'
-import path from 'node:path'
 import { type Action } from '../support/Actor.mjs'
-import { type RequestComposer, type PublishResult } from './types'
+import { touchReport } from './touchReport.mjs'
+import { type PublishResult, type RequestComposer } from './types'
+import { uploadContent } from './uploadContent.mjs'
 
 export const publishReport: (
   fixture: string,
   requestComposer: RequestComposer,
   privateToken?: string
 ) => Action<PublishResult> = (fixture, requestComposer, privateToken) => {
-  return async () => {
-    const headers = new Headers()
-    if (privateToken) {
-      headers.set('Authorization', `Bearer ${privateToken}`)
+  return async (actor) => {
+    const touchResult = await actor.attemptsTo(touchReport())
+    if (!touchResult.success) {
+      return touchResult
     }
-    const getResponse = await fetch(
-      'http://touch.lambda-url.us-east-2.localhost.localstack.cloud:4566',
-      { headers }
+
+    const uploadResult = await actor.attemptsTo(
+      uploadContent(fixture, requestComposer, touchResult.uploadUrl)
     )
-
-    const banner = stripVTControlCharacters(await getResponse.text())
-    const url = banner.split(' ').find((part) => part.startsWith('http'))
-
-    if (getResponse.ok && url) {
-      const uploadUrl = getResponse.headers.get('Location') as string
-      const envelopes = readFileSync(path.join(import.meta.dirname, '..', 'fixtures', fixture), {
-        encoding: 'utf-8',
-      })
-      const putResponse = await fetch(uploadUrl, requestComposer(envelopes))
-      assert.ok(putResponse.ok)
-    }
-
     return {
-      success: getResponse.ok,
-      banner,
-      url,
+      ...touchResult,
+      ...uploadResult,
     }
   }
 }
