@@ -8,37 +8,35 @@ The main goals of this architecture are to be easy to maintain and cheap to run.
 
 ## High-level architecture
 
-At a high level, the service has three parts:
+At a high level, the service has two runtime pieces, both on Cloudflare:
 
-- An [AWS S3](https://aws.amazon.com/s3/) bucket for storing messages
-- AWS Lambda functions with HTTP entry points for coordinating operations on those messages
-- A React single-page application (SPA) built with Vite for rendering reports
+- A [Cloudflare R2](https://developers.cloudflare.com/r2/) bucket for storing report envelopes as JSONL
+- A [Cloudflare Worker](https://developers.cloudflare.com/workers/) that handles the `/api/reports*` HTTP endpoints and also serves the React single-page application (SPA), built with Vite, via its static assets binding
 
 The user is interacting with this from two places:
 
-- Cucumber, with which they execute a test run — this in turn interacts with Lambda functions for coordination, and S3 for uploading messages
-- A browser, with which they subsequently view the report — this loads the React SPA, which in turn interacts with Lambda functions for coordination, and S3 for retrieving messages
+- Cucumber, with which they execute a test run — this interacts only with the Worker, which mediates writes to R2
+- A browser, with which they subsequently view the report — this loads the SPA from the Worker, and the SPA in turn calls the Worker's API, which mediates reads and deletes against R2
 
 ```mermaid
 graph TD
     Browser[Browser]:::browser
     Cucumber[Cucumber]:::cucumber
     SPA[React SPA]:::spa
-    Lambda[AWS Lambda]:::lambda
-    S3[(S3 Bucket)]:::s3
+    Worker[Cloudflare Worker]:::worker
+    R2[(R2 Bucket)]:::r2
 
-    Cucumber -->|uploads data| S3
-    Cucumber -->|creates reports| Lambda
-    Lambda -->|reads and writes reports| S3
+    Cucumber -->|publishes report| Worker
     Browser -->|loads| SPA
-    SPA -->|coordinates via| Lambda
-    SPA -->|fetches data| S3
+    SPA -.->|served by| Worker
+    SPA -->|coordinates via| Worker
+    Worker -->|reads and writes reports| R2
 
     classDef browser fill:#f3e5f5,stroke:#6a1b9a
     classDef cucumber fill:#e8f5e9,stroke:#2e7d32
     classDef spa fill:#e1f5fe,stroke:#01579b
-    classDef lambda fill:#fff9c4,stroke:#f57f17
-    classDef s3 fill:#fff3e0,stroke:#e65100
+    classDef worker fill:#fff9c4,stroke:#f57f17
+    classDef r2 fill:#fff3e0,stroke:#e65100
 ```
 
 ## Sequences
@@ -47,24 +45,36 @@ graph TD
 
 ```mermaid
 sequenceDiagram
-    Cucumber->>Lambda: 1. Request report creation
-    Lambda-->>Cucumber: 2. Return view URL and pre-signed upload URL
-    Cucumber->>S3: 3. Write messages object to bucket with upload URL
-    Browser->>SPA: 4. Navigate to report URL
-    SPA->>Lambda: 5. Request pre-signed retrieval URL
-    Lambda-->>SPA: 6. Return pre-signed retrieval URL
-    SPA->>S3: 7. Request messages object with retrieval URL
-    S3-->>SPA: 8. Return messages object
-    SPA->>SPA: 9. Render report
+    Cucumber->>Worker: 1. Request report creation (GET /api/reports)
+    Worker-->>Cucumber: 2. 202 with view URL in body and signed upload URL in Location header
+    Cucumber->>Worker: 3. PUT messages to signed upload URL
+    Worker->>R2: 4. Write object under report id
+    R2-->>Worker: 5. Return success
+    Worker-->>Cucumber: 6. Return success
+    Browser->>Worker: 7. Navigate to report URL (SPA served from assets)
+    Browser->>Worker: 8. GET /api/reports/{id}
+    Worker->>R2: 9. Read object
+    R2-->>Worker: 10. Return object
+    Worker-->>Browser: 11. Stream messages
+    Browser->>Browser: 12. Render report
 ```
 
 ### Deleting a report
 
 ```mermaid
 sequenceDiagram
-    SPA->>Lambda: 1. Request report deletion
-    Lambda->>S3: 2. Delete object from bucket
-    S3-->>Lambda: 3. Return success
-    Lambda-->>SPA: 4. Return success
+    SPA->>Worker: 1. Request report deletion (DELETE /api/reports/{id})
+    Worker->>R2: 2. Delete object from bucket
+    R2-->>Worker: 3. Return success
+    Worker-->>SPA: 4. Return success
     SPA->>SPA: 5. Navigate to landing page
 ```
+
+## Request signing
+
+Upload URLs work much like S3 presigned URLs: each one is scoped to a single object and carries a TTL, so it can't be reused to clobber other reports or linger indefinitely. We sign them with HMAC, keeping the Worker stateless and cheap to run.
+
+## Compression
+
+Cucumber messages are JSONL and repeat a lot of structure, so they compress well. Cucumber implementations are free to upload them raw or pre-gzipped; either way, we store the bytes in R2 as they arrive. On the way back out, the Worker decompresses gzipped objects itself, then hands the stream off to the Cloudflare edge, which negotiates transport compression with the client — usually zstd or brotli for modern browsers.
+

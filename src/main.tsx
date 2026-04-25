@@ -4,18 +4,15 @@ import * as Sentry from '@sentry/react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import ReactGA from 'react-ga4'
 import { BrowserRouter } from 'react-router-dom'
 
 import App from './App.tsx'
 
 Sentry.init({
-  dsn: 'https://c3ae677edf55795aca256db1bb0e7aa3@o4509553056546816.ingest.us.sentry.io/4509553058250752',
+  dsn: 'https://818872a2cba0bcd3d91c1e7227a2deeb@o4511275537334272.ingest.de.sentry.io/4511275623317584',
   integrations: [Sentry.consoleLoggingIntegration({ levels: ['log', 'warn', 'error'] })],
   enableLogs: true,
 })
-
-ReactGA.initialize('G-22NQZFFMH7')
 
 const queryClient = new QueryClient({
   defaultOptions: {

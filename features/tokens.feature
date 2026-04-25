@@ -5,7 +5,7 @@ Feature: Tokens
 
   Scenario: Publishing a report with a private token
     Given Amanda has a private token
-    When Amanda publishes a report
+    When Amanda attempts to publish a report
     Then Amanda should see the message:
       """
       ┌──────────────────────────────────────────────────┐

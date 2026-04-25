@@ -8,30 +8,22 @@ export function useEnvelopes(id: string) {
   return useQuery({
     queryKey: ['envelopes', id],
     queryFn: async (): Promise<ReadonlyArray<Envelope>> => {
-      const response = await fetch(import.meta.env.VITE_MESSAGES_URL_TEMPLATE.replace('{id}', id))
+      const response = await fetch(`/api/reports/${id}`)
       if (!response.ok) {
         throw new Error('Failed to fetch envelopes', { cause: response })
       }
       const raw = await response.text()
       const envelopes = raw.trim().split('\n')
       const parsed = envelopes.map((s) => parseEnvelope(s))
-      emitTelemetry(response, envelopes, parsed)
+      emitTelemetry(envelopes, parsed)
       return parsed
     },
   })
 }
 
-export function emitTelemetry(
-  response: Response,
-  envelopes: ReadonlyArray<string>,
-  parsed: ReadonlyArray<Envelope>
-) {
+export function emitTelemetry(envelopes: ReadonlyArray<string>, parsed: ReadonlyArray<Envelope>) {
   try {
     Sentry.metrics.count('envelopes_fetch', 1)
-    Sentry.setTags({
-      envelopes_compression:
-        response.headers.get('Content-Encoding') == 'gzip' ? 'compressed' : 'uncompressed',
-    })
     const meta = parsed.find((e) => e.meta)?.meta
     if (meta) {
       Sentry.setTags({

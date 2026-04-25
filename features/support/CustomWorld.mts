@@ -1,8 +1,9 @@
 import { Browser, launch } from 'puppeteer'
-import { ActorLookup } from './ActorLookup.mjs'
-import { Actor } from './Actor.mjs'
-import { type RequestComposer, type PublishResult } from '../actions/types'
+
 import { composeUncompressed } from '../actions/composeUncompressed.mjs'
+import { type PublishResult, type RequestComposer } from '../actions/types'
+import { Actor } from './Actor.mjs'
+import { ActorLookup } from './ActorLookup.mjs'
 
 export class CustomWorld {
   private readonly actorLookup = new ActorLookup()
