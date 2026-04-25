@@ -35,7 +35,7 @@
     "@types/node": "^22.15.32",
     "@types/react": "^19.1.10",
     "@types/react-dom": "^19.1.7",
-    "@vitejs/plugin-react": "^5.0.0",
+    "@vitejs/plugin-react": "^6.0.0",
     "autoprefixer": "^10.4.21",
     "eslint": "^9.33.0",
     "eslint-plugin-react-hooks": "^7.0.0",
@@ -51,7 +51,7 @@
     "tsx": "^4.19.3",
     "typescript": "~5.9.0",
     "typescript-eslint": "^8.39.1",
-    "vite": "^7.1.2",
+    "vite": "^8.0.0",
     "vitest": "^4.0.0",
     "wrangler": "^4.85.0",
     "zod": "^4.1.12"
