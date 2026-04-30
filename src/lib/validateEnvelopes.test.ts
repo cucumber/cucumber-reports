@@ -13,8 +13,8 @@ describe('validateEnvelopes', () => {
     const invalidPaths = validateEnvelopes(lines)
 
     expect(invalidPaths).toEqual([
-      'gherkinDocument.feature.children.scenario.examples',
-      'testRunStarted.timestamp.nanos',
+      'gherkinDocument.feature.children.scenario',
+      'testRunStarted.timestamp',
     ])
   })
 })
