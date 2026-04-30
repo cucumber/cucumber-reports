@@ -1,17 +1,18 @@
-import envelopeSchema from '@cucumber/messages/schema'
-import Ajv2020, { type ErrorObject } from 'ajv/dist/2020'
+import envelopeSchema from '@cucumber/messages/schema' with { type: 'json' }
+import { registerSchema, validate } from '@hyperjump/json-schema/draft-2020-12'
+import { BASIC } from '@hyperjump/json-schema/experimental'
 
-const ajv = new Ajv2020({ allErrors: true, strict: false })
-const validate = ajv.compile(envelopeSchema)
+registerSchema(envelopeSchema)
+const validator = await validate(envelopeSchema.$id)
 
 export function validateEnvelopes(envelopes: ReadonlyArray<string>): ReadonlyArray<string> {
   const invalidPaths = new Set<string>()
   for (const envelope of envelopes) {
     const parsed = JSON.parse(envelope)
-    const valid = validate(parsed)
-    if (!valid && validate.errors) {
-      for (const error of validate.errors) {
-        const path = makePath(error)
+    const output = validator(parsed, BASIC)
+    if (!output.valid && output.errors) {
+      for (const error of output.errors) {
+        const path = makePath(error.instanceLocation)
         if (path) {
           invalidPaths.add(path)
         }
@@ -21,15 +22,12 @@ export function validateEnvelopes(envelopes: ReadonlyArray<string>): ReadonlyArr
   return [...invalidPaths]
 }
 
-function makePath(error: ErrorObject): string {
-  let path = error.instancePath
-  // for "required" errors, append the missing property name
-  if (error.params?.missingProperty) {
-    path = `${path}/${error.params.missingProperty}`
-  }
-  return path
-    .replace(/^\//, '') // remove leading slash
-    .replace(/\/\d+\//g, '/') // remove array indexes like /0/
-    .replace(/\/\d+$/, '') // remove trailing array index
-    .replace(/\//g, '.') // replace slash separator with period
+function makePath(pointer: string): string {
+  return pointer
+    .replace(/^#/, '')
+    .replace(/^\//, '')
+    .split('/')
+    .filter((seg) => seg && !/^\d+$/.test(seg))
+    .map((seg) => seg.replace(/~1/g, '/').replace(/~0/g, '~'))
+    .join('.')
 }

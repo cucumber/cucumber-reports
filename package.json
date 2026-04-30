@@ -15,9 +15,10 @@
   "dependencies": {
     "@cucumber/messages": "^32.2.0",
     "@cucumber/react-components": "^24.1.2",
+    "@hyperjump/browser": "^1.3.1",
+    "@hyperjump/json-schema": "^1.17.6",
     "@sentry/react": "^10.30.0",
     "@tanstack/react-query": "^5.85.6",
-    "ajv": "^8.18.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-error-boundary": "^6.0.0",
@@ -53,7 +54,6 @@
     "typescript-eslint": "^8.39.1",
     "vite": "^8.0.0",
     "vitest": "^4.0.0",
-    "wrangler": "^4.85.0",
-    "zod": "^4.1.12"
+    "wrangler": "^4.85.0"
   }
 }
