@@ -5,9 +5,8 @@ import { uploadContent } from './uploadContent.mjs'
 
 export const publishReport: (
   fixture: string,
-  requestComposer: RequestComposer,
-  privateToken?: string
-) => Action<PublishResult> = (fixture, requestComposer, _privateToken) => {
+  requestComposer: RequestComposer
+) => Action<PublishResult> = (fixture, requestComposer) => {
   return async (actor) => {
     const touchResult = await actor.attemptsTo(touchReport())
     if (!touchResult.success) {

@@ -58,7 +58,7 @@ Given('a report previously published by {actor} has been deleted', async (_t, ac
 
 When('{actor} attempts to publish a report', async (t, actor: Actor) => {
   const publishResult = await actor.attemptsTo(
-    publishReport(t.world.messagesFixture, t.world.requestComposer, actor.recall('privateToken'))
+    publishReport(t.world.messagesFixture, t.world.requestComposer)
   )
   actor.remember('publishResult', publishResult)
   t.world.publishResults.push(publishResult)
@@ -66,7 +66,7 @@ When('{actor} attempts to publish a report', async (t, actor: Actor) => {
 
 When('{actor} publishes a report', async (t, actor: Actor) => {
   const publishResult = await actor.attemptsTo(
-    publishReport(t.world.messagesFixture, t.world.requestComposer, actor.recall('privateToken'))
+    publishReport(t.world.messagesFixture, t.world.requestComposer)
   )
   actor.remember('publishResult', publishResult)
   t.world.publishResults.push(publishResult)
