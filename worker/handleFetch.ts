@@ -6,7 +6,7 @@ import { writeResponse } from './writeResponse.ts'
 export async function handleFetch(env: Env, id: string): Promise<Response> {
   const data = await env.REPORTS_BUCKET.get(id)
   if (!data) {
-    return writeResponse(404, 'No report found with id ' + id)
+    return writeResponse(404, `No report found with id ${id}`)
   }
 
   /*

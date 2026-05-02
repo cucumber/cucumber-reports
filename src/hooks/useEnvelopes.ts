@@ -1,4 +1,4 @@
-import { Envelope, parseEnvelope } from '@cucumber/messages'
+import { type Envelope, parseEnvelope } from '@cucumber/messages'
 import * as Sentry from '@sentry/react'
 import { useQuery } from '@tanstack/react-query'
 

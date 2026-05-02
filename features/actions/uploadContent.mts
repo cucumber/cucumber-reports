@@ -1,8 +1,8 @@
 import { readFileSync } from 'node:fs'
 import path from 'node:path'
 
-import { type Action } from '../support/Actor.mjs'
-import { type RequestComposer, type UploadResult } from './types'
+import type { Action } from '../support/Actor.mjs'
+import type { RequestComposer, UploadResult } from './types'
 
 export const uploadContent: (
   fixture: string,

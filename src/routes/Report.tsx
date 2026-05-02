@@ -44,6 +44,7 @@ function Report() {
           <p className="text-xl">
             It will be automatically deleted after 24 hours.{' '}
             <button
+              type="button"
               onClick={handleDelete}
               className="bg-red-700 text-white text-sm px-2 py-1 rounded-sm ml-1 cursor-pointer"
             >
