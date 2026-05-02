@@ -1,7 +1,7 @@
 import { stripVTControlCharacters } from 'node:util'
 
-import { type Action } from '../support/Actor.mjs'
-import { type TouchResult } from './types'
+import type { Action } from '../support/Actor.mjs'
+import type { TouchResult } from './types'
 
 export const touchReport: () => Action<TouchResult> = () => {
   return async (actor) => {

@@ -1,13 +1,13 @@
-import { type Action } from '../support/Actor.mjs'
+import type { Action } from '../support/Actor.mjs'
 import { touchReport } from './touchReport.mjs'
-import { type PublishResult, type RequestComposer } from './types'
+import type { PublishResult, RequestComposer } from './types'
 import { uploadContent } from './uploadContent.mjs'
 
 export const publishReport: (
   fixture: string,
   requestComposer: RequestComposer,
   privateToken?: string
-) => Action<PublishResult> = (fixture, requestComposer, privateToken) => {
+) => Action<PublishResult> = (fixture, requestComposer, _privateToken) => {
   return async (actor) => {
     const touchResult = await actor.attemptsTo(touchReport())
     if (!touchResult.success) {

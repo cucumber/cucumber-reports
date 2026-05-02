@@ -8,6 +8,6 @@ export const tokenBanner = makeBanner(
     'You can still publish anonymous (public) reports',
     'by removing the token from your configuration.',
     '',
-    'See ' + styleText(['bold', 'underline', 'cyan'], 'https://reports.cucumber.io/faqs'),
+    `See ${styleText(['bold', 'underline', 'cyan'], 'https://reports.cucumber.io/faqs')}`,
   ]
 )

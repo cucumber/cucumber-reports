@@ -1,6 +1,6 @@
-import { Page } from 'puppeteer'
-import { type Action, Actor } from '../support/Actor.mjs'
-import { type PublishResult } from './types'
+import type { Page } from 'puppeteer'
+import type { Action, Actor } from '../support/Actor.mjs'
+import type { PublishResult } from './types'
 
 export const retrieveReport: (publishResultOrUrl: PublishResult | string) => Action<Page> = (
   publishResultOrUrl

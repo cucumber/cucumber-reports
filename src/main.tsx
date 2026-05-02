@@ -26,7 +26,12 @@ const queryClient = new QueryClient({
   },
 })
 
-createRoot(document.getElementById('root')!, {
+const rootElement = document.getElementById('root')
+if (!rootElement) {
+  throw new Error('Root element not found')
+}
+
+createRoot(rootElement, {
   onCaughtError: Sentry.reactErrorHandler(),
   onUncaughtError: Sentry.reactErrorHandler(),
   onRecoverableError: Sentry.reactErrorHandler(),

@@ -1,5 +1,5 @@
+import type { World } from '@cucumber/node'
 import { Actor } from './Actor.mjs'
-import { type World } from '@cucumber/node'
 
 export class ActorLookup {
   private readonly actorByName = new Map<string, Actor>()
