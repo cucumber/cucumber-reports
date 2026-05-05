@@ -22,6 +22,7 @@ export type UploadResult = {
 export type PublishResult = {
   success: boolean
   banner: string
+  id?: string
   url?: string
   status?: number
 }

@@ -10,3 +10,13 @@ Feature: Publishing
     And Garrett shares their link with Hannah
     When Hannah views the shared report
     Then Hannah should see the test results
+
+  Scenario Outline: Content negotiation
+    Given a Cucumber implementation that accepts "<type>"
+    When Lakshmi publishes a report
+    And Lakshmi views the report they just published
+    Then Lakshmi should see their test results
+    Examples:
+      | type             |
+      | text/plain       |
+      | application/json |

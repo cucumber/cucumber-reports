@@ -6,11 +6,11 @@ import { writeResponse } from './writeResponse.ts'
 export async function handleTouch(request: Request, env: Env): Promise<Response> {
   if (request.headers.get('authorization')) {
     console.warn('Received request with authorization header; rejecting it')
-    return writeResponse(400, tokenBanner)
+    return writeResponse(400, acceptsJson(request) ? { banner: tokenBanner } : tokenBanner)
   }
 
   const id = crypto.randomUUID()
-  const reportUrl = `${env.BASE_URL}/reports/${id}`
+  const url = `${env.BASE_URL}/reports/${id}`
   const until = String(Date.now() + Number(env.UPLOAD_TTL) * 1000)
   const signature = await sign(id, until, env.SIGNING_KEY)
 
@@ -19,11 +19,16 @@ export async function handleTouch(request: Request, env: Env): Promise<Response>
   uploadUrl.searchParams.set('until', until)
   uploadUrl.searchParams.set('signature', signature)
 
-  return new Response(makeReportBanner(reportUrl), {
-    status: 202,
-    headers: {
-      'content-type': 'text/plain; charset=UTF-8',
-      location: uploadUrl.toString(),
-    },
+  const result = {
+    banner: makeReportBanner(url),
+    url,
+  }
+
+  return writeResponse(202, acceptsJson(request) ? result : result.banner, {
+    location: uploadUrl.toString(),
   })
+}
+
+function acceptsJson(request: Request): boolean {
+  return (request.headers.get('accept') ?? '').toLowerCase().includes('application/json')
 }
