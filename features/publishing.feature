@@ -20,3 +20,4 @@ Feature: Publishing
       | type             |
       | text/plain       |
       | application/json |
+      | */*              |
