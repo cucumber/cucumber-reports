@@ -14,7 +14,7 @@ export const touchReport: () => Action<TouchResult> = () => {
     const response = await fetch('http://localhost:5173/api/reports', { headers })
 
     if (actor.world.accepts.includes('application/json')) {
-      const body = (await response.json()) as { banner: string; id?: string; url?: string }
+      const body = (await response.json()) as { banner: string; url?: string }
       const banner = stripVTControlCharacters(body.banner)
       if (response.ok) {
         return {

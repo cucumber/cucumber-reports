@@ -23,7 +23,7 @@ paths:
           description: |
             Report created successfully. The `Location` header contains a pre-signed URL for
             uploading the report data. The body is either a `text/plain` banner with the
-            report URL embedded, or a JSON object with `banner`, `id` and `url` fields,
+            report URL embedded, or a JSON object with `banner` and `url` fields,
             depending on the `Accept` header.
           headers:
             Location:
@@ -44,7 +44,7 @@ paths:
             application/json:
               schema:
                 type: object
-                required: [banner, id, url]
+                required: [banner, url]
                 properties:
                   banner:
                     type: string
@@ -57,7 +57,6 @@ paths:
                     description: The URL at which the report will be viewable.
               example:
                 banner: "┌───────────────────────────────────────────┐│ View your Cucumber Report at:             ││ https://reports.cucumber.io/report/abc123 ││                                           ││ This report will self-destruct in 24h.    │└───────────────────────────────────────────┘"
-                id: f5dd0aa8-95e0-4b74-9a91-000516df94ff
                 url: https://reports.cucumber.io/reports/f5dd0aa8-95e0-4b74-9a91-000516df94ff
         '400':
           description: |
