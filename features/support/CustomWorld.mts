@@ -10,6 +10,7 @@ export class CustomWorld {
   private browser: Browser | undefined
   public messagesFixture = 'messages-valid.ndjson'
   public requestComposer: RequestComposer = composeUncompressed
+  public accepts: string = 'text/plain'
   public publishResults: Array<PublishResult> = []
 
   public findOrCreateActor(actorName: string): Actor {

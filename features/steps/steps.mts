@@ -44,6 +44,10 @@ Given('a Cucumber implementation that tampers with the upload URL', async (t) =>
   }
 })
 
+Given('a Cucumber implementation that accepts {string}', async (t, contentType) => {
+  t.world.accepts = contentType
+})
+
 Given('{actor} has a private token', async (_t, actor: Actor) => {
   actor.remember('privateToken', crypto.randomBytes(16).toString('hex'))
 })
