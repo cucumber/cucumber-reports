@@ -17,4 +17,10 @@ describe('validateEnvelopes', () => {
       'testRunStarted.timestamp',
     ])
   })
+
+  it('ignores invalid paths for anything besides omissions', () => {
+    const invalidPaths = validateEnvelopes([`{"foo":"bar"}`])
+
+    expect(invalidPaths).toEqual([])
+  })
 })
