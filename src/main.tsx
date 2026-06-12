@@ -10,8 +10,12 @@ import App from './App.tsx'
 
 Sentry.init({
   dsn: 'https://818872a2cba0bcd3d91c1e7227a2deeb@o4511275537334272.ingest.de.sentry.io/4511275623317584',
-  integrations: [Sentry.consoleLoggingIntegration({ levels: ['log', 'warn', 'error'] })],
+  integrations: [
+    Sentry.consoleLoggingIntegration({ levels: ['log', 'warn', 'error'] }),
+    Sentry.browserTracingIntegration(),
+  ],
   enableLogs: true,
+  tracesSampleRate: 1.0,
 })
 
 const queryClient = new QueryClient({
