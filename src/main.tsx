@@ -15,7 +15,7 @@ Sentry.init({
     Sentry.browserTracingIntegration(),
   ],
   enableLogs: true,
-  tracesSampleRate: 1.0,
+  tracesSampleRate: 0.1,
 })
 
 const queryClient = new QueryClient({
