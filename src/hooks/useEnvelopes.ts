@@ -1,7 +1,6 @@
 import { type Envelope, parseEnvelope } from '@cucumber/messages'
 import * as Sentry from '@sentry/react'
 import { useQuery } from '@tanstack/react-query'
-
 import { validateEnvelopes } from '../lib/validateEnvelopes'
 
 export function useEnvelopes(id: string) {
