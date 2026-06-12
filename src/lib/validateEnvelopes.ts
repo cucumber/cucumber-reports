@@ -16,9 +16,11 @@ export function validateEnvelopes(
     const output = validator(parsed as (typeof validator.arguments)[0], BASIC)
     if (!output.valid && output.errors) {
       for (const error of output.errors) {
-        const path = makePath(error.instanceLocation)
-        if (path) {
-          invalidPaths.add(path)
+        if (error.keyword === 'https://json-schema.org/keyword/required') {
+          const path = makePath(error.instanceLocation)
+          if (path) {
+            invalidPaths.add(path)
+          }
         }
       }
     }
