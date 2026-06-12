@@ -1,6 +1,7 @@
 import { type Envelope, parseEnvelope } from '@cucumber/messages'
 import * as Sentry from '@sentry/react'
 import { useQuery } from '@tanstack/react-query'
+import { parseEnvelopeWithReviver } from '../lib/parseEnvelopeWithReviver.ts'
 import { validateEnvelopes } from '../lib/validateEnvelopes'
 
 export function useEnvelopes(id: string) {
@@ -35,7 +36,7 @@ export function emitTelemetry(envelopes: ReadonlyArray<string>, parsed: Readonly
       })
     }
 
-    const invalidPaths = validateEnvelopes(envelopes)
+    const invalidPaths = validateEnvelopes(envelopes, parseEnvelopeWithReviver)
     for (const path of invalidPaths) {
       Sentry.metrics.count('envelopes_validity', 1, { attributes: { path } })
     }
