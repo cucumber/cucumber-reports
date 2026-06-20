@@ -30,7 +30,7 @@
     "@biomejs/biome": "^2.4.14",
     "@cloudflare/vite-plugin": "^1.33.2",
     "@cloudflare/workers-types": "^4.20260424.1",
-    "@cucumber/biome-config": "github:cucumber/biome-config#v0.2.1",
+    "@cucumber/biome-config": "github:cucumber/biome-config#v0.3.0",
     "@cucumber/node": "^0.7.0",
     "@tailwindcss/postcss": "^4.1.12",
     "@tailwindcss/typography": "^0.5.16",
