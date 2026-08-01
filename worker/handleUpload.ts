@@ -1,4 +1,3 @@
-import type { Env } from './env.ts'
 import { verify } from './signing'
 import { writeResponse } from './writeResponse.ts'
 

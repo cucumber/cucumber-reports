@@ -5,7 +5,8 @@
   "private": true,
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "npm run generate-types && tsc -b && vite build",
+    "generate-types": "wrangler types",
     "fix": "biome check --fix --error-on-warnings",
     "lint": "biome check --error-on-warnings",
     "preview": "vite preview",
@@ -29,7 +30,6 @@
   "devDependencies": {
     "@biomejs/biome": "^2.4.14",
     "@cloudflare/vite-plugin": "^1.42.1",
-    "@cloudflare/workers-types": "^5.0.0",
     "@cucumber/biome-config": "github:cucumber/biome-config#v0.6.0",
     "@cucumber/node": "^0.7.0",
     "@tailwindcss/postcss": "^4.1.12",
