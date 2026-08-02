@@ -1,6 +1,3 @@
-import type { R2ObjectBody } from '@cloudflare/workers-types'
-
-import type { Env } from './env.ts'
 import { writeResponse } from './writeResponse.ts'
 
 export async function handleFetch(env: Env, id: string): Promise<Response> {

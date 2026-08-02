@@ -1,7 +1,10 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
+# Generated worker types
+worker-configuration.d.ts
+
 # wrangler local development state
-.wrangler
+/.wrangler
 
 # dependencies
 /node_modules
@@ -39,3 +42,6 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
+
+# InteliJ IDEA
+/.idea
