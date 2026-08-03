@@ -5,10 +5,10 @@
   "private": true,
   "scripts": {
     "dev": "vite",
-    "build": "npm run generate-types && tsc -b && vite build",
-    "generate-types": "wrangler types",
+    "build": "tsc -b && vite build",
     "fix": "biome check --fix --error-on-warnings",
     "lint": "biome check --error-on-warnings",
+    "prepare": "wrangler types",
     "preview": "vite preview",
     "test:unit": "vitest",
     "test:acceptance": "node --import @cucumber/node/bootstrap --import tsx --test-concurrency=3 --test \"features/**/*.feature\""
