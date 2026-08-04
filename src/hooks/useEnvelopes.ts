@@ -1,4 +1,4 @@
-import { type Envelope, parseEnvelope } from '@cucumber/messages'
+import type { Envelope } from '@cucumber/messages'
 import * as Sentry from '@sentry/react'
 import { useQuery } from '@tanstack/react-query'
 import { parseEnvelopeWithReviver } from '../lib/parseEnvelopeWithReviver.ts'
@@ -14,7 +14,7 @@ export function useEnvelopes(id: string) {
       }
       const raw = await response.text()
       const envelopes = raw.trim().split('\n')
-      const parsed = envelopes.map((s) => parseEnvelope(s))
+      const parsed = envelopes.map((s) => parseEnvelopeWithReviver(s))
       emitTelemetry(envelopes, parsed)
       return parsed
     },
