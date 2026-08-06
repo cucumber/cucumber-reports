@@ -1,5 +1,4 @@
 import { makeReportBanner, tokenBanner } from './banner'
-import type { Env } from './env.ts'
 import { sign } from './signing'
 import { writeResponse } from './writeResponse.ts'
 

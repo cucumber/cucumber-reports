@@ -1,4 +1,3 @@
-import type { Env } from './env.ts'
 import { handleDelete } from './handleDelete.ts'
 import { handleFetch } from './handleFetch.ts'
 import { handleTouch } from './handleTouch.ts'

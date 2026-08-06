@@ -7,8 +7,10 @@ type KnownOmission = {
 }
 
 const KNOWN_OMISSIONS: Record<string, ReadonlyArray<KnownOmission>> = {
+  attachment: [{ key: 'contentEncoding', type: 'string', fallback: 'IDENTITY' }],
   background: [
     { key: 'description', type: 'string', fallback: '' },
+    { key: 'name', type: 'string', fallback: '' },
     { key: 'steps', type: 'array', fallback: () => [] },
   ],
   cells: [{ key: 'value', type: 'string', fallback: '' }],
@@ -23,16 +25,33 @@ const KNOWN_OMISSIONS: Record<string, ReadonlyArray<KnownOmission>> = {
   ],
   feature: [
     { key: 'description', type: 'string', fallback: '' },
+    { key: 'name', type: 'string', fallback: '' },
     { key: 'tags', type: 'array', fallback: () => [] },
+  ],
+  gherkinDocument: [
+    {
+      key: 'comments',
+      type: 'array',
+      fallback: () => [],
+    },
   ],
   javaMethod: [{ key: 'methodParameterTypes', type: 'array', fallback: () => [] }],
   pattern: [{ key: 'type', type: 'string', fallback: 'CUCUMBER_EXPRESSION' }],
+  pickle: [
+    {
+      key: 'tags',
+      type: 'array',
+      fallback: () => [],
+    },
+  ],
   rule: [
     { key: 'description', type: 'string', fallback: '' },
+    { key: 'name', type: 'string', fallback: '' },
     { key: 'tags', type: 'array', fallback: () => [] },
   ],
   scenario: [
     { key: 'description', type: 'string', fallback: '' },
+    { key: 'name', type: 'string', fallback: '' },
     {
       key: 'tags',
       type: 'array',
