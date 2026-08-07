@@ -24,6 +24,7 @@ const KNOWN_OMISSIONS: Record<string, ReadonlyArray<KnownOmission>> = {
     { key: 'tags', type: 'array', fallback: () => [] },
   ],
   feature: [
+    { key: 'children', type: 'array', fallback: () => [] },
     { key: 'description', type: 'string', fallback: '' },
     { key: 'name', type: 'string', fallback: '' },
     { key: 'tags', type: 'array', fallback: () => [] },
@@ -45,6 +46,7 @@ const KNOWN_OMISSIONS: Record<string, ReadonlyArray<KnownOmission>> = {
     },
   ],
   rule: [
+    { key: 'children', type: 'array', fallback: () => [] },
     { key: 'description', type: 'string', fallback: '' },
     { key: 'name', type: 'string', fallback: '' },
     { key: 'tags', type: 'array', fallback: () => [] },
