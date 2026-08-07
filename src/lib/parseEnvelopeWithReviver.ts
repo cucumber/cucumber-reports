@@ -21,6 +21,11 @@ const KNOWN_OMISSIONS: Record<string, ReadonlyArray<KnownOmission>> = {
   examples: [
     { key: 'description', type: 'string', fallback: '' },
     { key: 'name', type: 'string', fallback: '' },
+    {
+      key: 'tableBody',
+      type: 'array',
+      fallback: () => [],
+    },
     { key: 'tags', type: 'array', fallback: () => [] },
   ],
   feature: [
@@ -53,14 +58,14 @@ const KNOWN_OMISSIONS: Record<string, ReadonlyArray<KnownOmission>> = {
   ],
   scenario: [
     { key: 'description', type: 'string', fallback: '' },
-    { key: 'name', type: 'string', fallback: '' },
     {
-      key: 'tags',
+      key: 'examples',
       type: 'array',
       fallback: () => [],
     },
+    { key: 'name', type: 'string', fallback: '' },
     {
-      key: 'examples',
+      key: 'tags',
       type: 'array',
       fallback: () => [],
     },
