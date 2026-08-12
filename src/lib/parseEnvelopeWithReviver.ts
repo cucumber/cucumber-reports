@@ -65,6 +65,11 @@ const KNOWN_OMISSIONS: Record<string, ReadonlyArray<KnownOmission>> = {
     },
     { key: 'name', type: 'string', fallback: '' },
     {
+      key: 'steps',
+      type: 'array',
+      fallback: () => [],
+    },
+    {
       key: 'tags',
       type: 'array',
       fallback: () => [],
