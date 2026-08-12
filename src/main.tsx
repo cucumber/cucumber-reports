@@ -2,7 +2,7 @@ import './index.css'
 
 import * as Sentry from '@sentry/react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { StrictMode } from 'react'
+import { type ErrorInfo, StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
 
@@ -36,9 +36,9 @@ if (!rootElement) {
 }
 
 createRoot(rootElement, {
-  onCaughtError: Sentry.reactErrorHandler(),
-  onUncaughtError: Sentry.reactErrorHandler(),
-  onRecoverableError: Sentry.reactErrorHandler(),
+  onCaughtError: Sentry.reactErrorHandler(logToConsole),
+  onUncaughtError: Sentry.reactErrorHandler(logToConsole),
+  onRecoverableError: Sentry.reactErrorHandler(logToConsole),
 }).render(
   <StrictMode>
     <QueryClientProvider client={queryClient}>
@@ -48,3 +48,7 @@ createRoot(rootElement, {
     </QueryClientProvider>
   </StrictMode>
 )
+
+function logToConsole(error: unknown, errorInfo: ErrorInfo) {
+  console.error(error, errorInfo.componentStack)
+}
