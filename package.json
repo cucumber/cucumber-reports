@@ -16,7 +16,7 @@
   "dependencies": {
     "@cucumber/messages": "^34.0.0",
     "@cucumber/react-components": "^24.3.0",
-    "@sentry/react": "^10.30.0",
+    "@sentry/react": "^11.0.0",
     "@tanstack/react-query": "^5.85.6",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
