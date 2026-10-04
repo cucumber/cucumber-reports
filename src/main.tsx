@@ -14,7 +14,6 @@ Sentry.init({
     Sentry.consoleLoggingIntegration({ levels: ['log', 'warn', 'error'] }),
     Sentry.browserTracingIntegration(),
   ],
-  enableLogs: true,
   tracesSampleRate: 0.1,
 })
 
