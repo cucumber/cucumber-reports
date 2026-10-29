@@ -43,4 +43,4 @@ npm run test:acceptance
 
 ## Testing with Cucumber
 
-You can point Cucumber at your locally running app by setting the `CUCUMBER_PUBLISH_URL` environment variable to `http://localhost:5173/api/reports`. You might want to increase the `UPLOAD_TTL` variable which is set artificially low by default. 
+You can point Cucumber at your locally running app by setting the `CUCUMBER_PUBLISH_URL` environment variable to `http://localhost:5173/api/reports`. You might want to increase the `UPLOAD_TTL` variable which is set artificially low by default.
