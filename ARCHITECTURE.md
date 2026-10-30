@@ -77,4 +77,3 @@ Upload URLs work much like S3 presigned URLs: each one is scoped to a single obj
 ## Compression
 
 Cucumber messages are JSONL and repeat a lot of structure, so they compress well. Cucumber implementations are free to upload them raw or pre-gzipped; either way, we store the bytes in R2 as they arrive. On the way back out, the Worker decompresses gzipped objects itself, then hands the stream off to the Cloudflare edge, which negotiates transport compression with the client — usually zstd or brotli for modern browsers.
-
