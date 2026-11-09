@@ -28,7 +28,7 @@
   "devDependencies": {
     "@biomejs/biome": "^2.4.14",
     "@cloudflare/vite-plugin": "^1.42.1",
-    "@cucumber/biome-config": "github:cucumber/biome-config#v0.7.0",
+    "@cucumber/biome-config": "^0.7.1",
     "@cucumber/node": "^0.8.0",
     "@tailwindcss/postcss": "^4.1.12",
     "@tailwindcss/typography": "^0.5.16",
